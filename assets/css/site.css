@@ -705,7 +705,6 @@ button { color: inherit; }
 .lightbox-details .section-kicker { max-width: 230px; }
 .lightbox-details h2 { margin: 21px 0 12px; color: var(--paper); font-family: var(--serif); font-size: clamp(28px, 4vw, 44px); font-weight: 400; line-height: 1.3; }
 .lightbox-description { margin: 0; color: var(--paper-muted); font-size: 13px; line-height: 1.9; }
-.lightbox-hint { margin: 30px 0 12px; color: var(--paper-dim); font-size: 10px; }
 .lightbox-controls { display: flex; gap: 8px; }
 .lightbox-controls button { width: 42px; height: 38px; border: 1px solid var(--line-strong); background: transparent; color: var(--gold-light); font-size: 18px; cursor: pointer; transition: background 160ms ease, color 160ms ease; }
 .lightbox-controls button:hover { background: var(--gold); color: var(--night); }
@@ -824,4 +823,58 @@ button { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+
+
+/* Portfolio index and dedicated project views */
+.brand-name { font-family: var(--sans); font-size: 14px; font-weight: 500; letter-spacing: 0.07em; }
+.brand-name small { font-family: var(--serif); font-size: 12px; letter-spacing: 0.08em; }
+.works-index-section { padding-top: clamp(70px, 8vw, 112px); padding-bottom: clamp(86px, 10vw, 132px); }
+.works-index-section .project-index { margin-top: 0; padding-top: 19px; }
+.works-index-section .project-index-heading { margin-bottom: clamp(20px, 3vw, 30px); display: flex; align-items: center; justify-content: space-between; }
+.works-index-section .project-index-label { margin: 0; color: var(--paper); font-family: var(--serif); font-size: 24px; font-weight: 400; letter-spacing: 0.04em; }
+.works-index-section .project-index-label span { color: var(--paper-dim); font-family: var(--sans); font-size: 10px; }
+.project-index-edition { color: var(--paper-dim); font-size: 10px; letter-spacing: 0.14em; }
+.project-entry-arrow { font-size: 17px; }
+
+.project-cover { position: relative; min-height: min(850px, 94svh); min-height: max(650px, min(850px, 94svh)); display: flex; align-items: end; overflow: hidden; isolation: isolate; background: #101923; }
+.project-cover-image { position: absolute; z-index: -2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 51%; }
+.project-cover .hero-shade { background: linear-gradient(90deg, rgba(7, 13, 20, 0.75) 0%, rgba(7, 13, 20, 0.4) 38%, rgba(7, 13, 20, 0.02) 83%), linear-gradient(0deg, rgba(7, 13, 20, 0.8) 0%, rgba(7, 13, 20, 0.12) 58%, rgba(7, 13, 20, 0.2) 100%); }
+.project-cover-copy { width: min(760px, calc(100% - var(--gutter) * 2)); margin: 0 0 clamp(105px, 14vh, 146px) max(var(--gutter), calc((100vw - var(--max-width)) / 2 + 24px)); }
+.project-cover-copy h1 { margin: 22px 0 16px; color: var(--paper); font-family: var(--serif); font-size: clamp(52px, 7vw, 96px); font-weight: 500; letter-spacing: -0.06em; line-height: 1.2; }
+.project-cover-caption { position: absolute; right: var(--gutter); bottom: 25px; left: var(--gutter); margin: 0; padding-top: 12px; display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(238, 231, 216, 0.3); color: rgba(238, 231, 216, 0.74); font-size: 10px; letter-spacing: 0.1em; }
+.project-cover-caption span:last-child { color: var(--gold-light); }
+.project-gallery-section { padding-top: clamp(58px, 7vw, 94px); padding-bottom: clamp(96px, 11vw, 145px); }
+.project-gallery-section .project-detail { margin-top: 0; }
+.project-gallery-section .project-heading { margin-bottom: clamp(44px, 6vw, 72px); }
+.project-gallery-section .project-heading h3 { font-size: clamp(25px, 3vw, 36px); }
+.motion-page { min-height: calc(100svh - 82px); padding-top: clamp(130px, 16vw, 190px); }
+.motion-page .motion-page-heading { margin-bottom: clamp(28px, 4vw, 46px); display: flex; align-items: end; justify-content: space-between; gap: 24px; }
+.motion-page-heading h1 { margin: 17px 0 0; color: var(--paper); font-family: var(--serif); font-size: clamp(38px, 5.2vw, 64px); font-weight: 400; letter-spacing: -0.04em; line-height: 1.3; }
+.motion-page .motion-frame video { max-height: 74svh; }
+
+@media (max-width: 900px) {
+  .project-cover-copy { margin-bottom: 122px; }
+  .project-cover { min-height: max(630px, min(790px, 90svh)); }
+}
+@media (max-width: 640px) {
+  .brand-name { font-size: 12px; letter-spacing: 0.03em; }
+  .brand-name small { font-size: 10px; letter-spacing: 0.03em; }
+  .works-index-section { padding-top: 68px; padding-bottom: 84px; }
+  .works-index-section .project-index { padding-top: 15px; }
+  .works-index-section .project-index-heading { margin-bottom: 18px; }
+  .works-index-section .project-index-label { font-size: 20px; }
+  .works-index-section .project-index-label span { font-size: 9px; }
+  .project-cover { min-height: max(690px, 90svh); }
+  .project-cover-image { object-position: 57% 50%; }
+  .project-cover .hero-shade { background: linear-gradient(90deg, rgba(7, 13, 20, 0.62), rgba(7, 13, 20, 0.06)), linear-gradient(0deg, rgba(7, 13, 20, 0.9) 0%, rgba(7, 13, 20, 0.42) 50%, rgba(7, 13, 20, 0.18) 100%); }
+  .project-cover-copy { margin: 0 0 138px var(--gutter); }
+  .project-cover-copy h1 { font-size: clamp(48px, 12vw, 64px); }
+  .project-cover-caption { right: var(--gutter); bottom: 22px; left: var(--gutter); font-size: 8px; letter-spacing: 0.06em; }
+  .project-gallery-section { padding-top: 52px; padding-bottom: 85px; }
+  .project-gallery-section .project-heading { align-items: start; }
+  .project-gallery-section .project-heading h3 { font-size: 24px; }
+  .motion-page { min-height: calc(100svh - 70px); padding-top: 112px; padding-bottom: 72px; }
+  .motion-page .motion-page-heading { align-items: start; }
+  .motion-page-heading h1 { margin-top: 13px; font-size: clamp(32px, 9vw, 43px); }
 }

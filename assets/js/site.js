@@ -10,7 +10,7 @@
   const panel = document.querySelector(".lightbox-panel");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (!cards.length || !dialog || !lightboxImage || !lightboxMedia) return;
+  if (cards.length && dialog && lightboxImage && lightboxMedia) {
 
   const works = cards.map((card) => {
     const image = card.querySelector("img");
@@ -92,6 +92,8 @@
     if (event.key === "ArrowLeft") setWork(currentIndex - 1);
   });
 
+  }
+
   if (window.gsap && window.ScrollTrigger) {
     window.gsap.registerPlugin(window.ScrollTrigger);
     const motion = window.gsap.matchMedia();
@@ -101,28 +103,30 @@
       const heroImage = document.querySelector(".hero-image");
       const heroCopy = document.querySelector(".hero-copy");
 
-      window.gsap.fromTo(
-        heroCopy,
-        { autoAlpha: 0, y: 18 },
-        { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }
-      );
+      if (hero && heroImage && heroCopy) {
+        window.gsap.fromTo(
+          heroCopy,
+          { autoAlpha: 0, y: 18 },
+          { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }
+        );
 
-      window.gsap.fromTo(
-        heroImage,
-        { scale: 1.085 },
-        {
-          scale: 1.015,
+        window.gsap.fromTo(
+          heroImage,
+          { scale: 1.085 },
+          {
+            scale: 1.015,
+            ease: "none",
+            scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
+          }
+        );
+
+        window.gsap.to(heroCopy, {
+          y: -12,
+          autoAlpha: 0.5,
           ease: "none",
           scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
-        }
-      );
-
-      window.gsap.to(heroCopy, {
-        y: -12,
-        autoAlpha: 0.5,
-        ease: "none",
-        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
-      });
+        });
+      }
 
       document.querySelectorAll("[data-reveal]").forEach((element, index) => {
         window.gsap.fromTo(
