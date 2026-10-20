@@ -2,6 +2,7 @@
   const cards = Array.from(document.querySelectorAll(".work-card"));
   const dialog = document.querySelector("#lightbox");
   const lightboxImage = document.querySelector("#lightbox-image");
+  const lightboxMedia = document.querySelector(".lightbox-media");
   const lightboxTitle = document.querySelector("#lightbox-title");
   const lightboxTag = document.querySelector("#lightbox-tag");
   const lightboxDescription = document.querySelector("#lightbox-description");
@@ -9,7 +10,7 @@
   const panel = document.querySelector(".lightbox-panel");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (!cards.length || !dialog || !lightboxImage) return;
+  if (!cards.length || !dialog || !lightboxImage || !lightboxMedia) return;
 
   const works = cards.map((card) => {
     const image = card.querySelector("img");
@@ -17,6 +18,8 @@
     return {
       src: image.getAttribute("src"),
       alt: image.alt,
+      width: Number(image.getAttribute("width")) || image.naturalWidth,
+      height: Number(image.getAttribute("height")) || image.naturalHeight,
       title: meta.querySelector("strong").textContent.trim(),
       tag: meta.querySelector("small").textContent.trim(),
       description: card.querySelector(".work-description").textContent.trim(),
@@ -33,6 +36,9 @@
     const work = works[currentIndex];
     lightboxImage.src = work.src;
     lightboxImage.alt = work.alt;
+    lightboxImage.width = work.width;
+    lightboxImage.height = work.height;
+    lightboxMedia.style.setProperty("--lightbox-ratio", `${work.width} / ${work.height}`);
     lightboxTitle.textContent = work.title;
     lightboxTag.textContent = work.tag;
     lightboxDescription.textContent = work.description;
