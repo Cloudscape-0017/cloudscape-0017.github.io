@@ -4,6 +4,7 @@
   const lightboxImage = document.querySelector("#lightbox-image");
   const lightboxTitle = document.querySelector("#lightbox-title");
   const lightboxTag = document.querySelector("#lightbox-tag");
+  const lightboxDescription = document.querySelector("#lightbox-description");
   const lightboxCount = document.querySelector("#lightbox-count");
   const panel = document.querySelector(".lightbox-panel");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -12,11 +13,13 @@
 
   const works = cards.map((card) => {
     const image = card.querySelector("img");
+    const meta = card.querySelector(".work-meta");
     return {
       src: image.getAttribute("src"),
       alt: image.alt,
-      title: card.querySelector(".work-caption strong").textContent.trim(),
-      tag: card.querySelector(".work-caption small").textContent.trim(),
+      title: meta.querySelector("strong").textContent.trim(),
+      tag: meta.querySelector("small").textContent.trim(),
+      description: card.querySelector(".work-description").textContent.trim(),
     };
   });
 
@@ -32,6 +35,7 @@
     lightboxImage.alt = work.alt;
     lightboxTitle.textContent = work.title;
     lightboxTag.textContent = work.tag;
+    lightboxDescription.textContent = work.description;
     lightboxCount.textContent = `${formattedIndex(currentIndex)} / ${String(works.length).padStart(2, "0")}`;
 
     const next = new Image();
@@ -47,8 +51,8 @@
     if (window.gsap && !reducedMotion.matches) {
       window.gsap.fromTo(
         panel,
-        { autoAlpha: 0, y: 12, scale: 0.99 },
-        { autoAlpha: 1, y: 0, scale: 1, duration: 0.24, ease: "power2.out", overwrite: true }
+        { autoAlpha: 0, y: 10 },
+        { autoAlpha: 1, y: 0, duration: 0.22, ease: "power2.out", overwrite: true }
       );
     }
   }
@@ -87,35 +91,32 @@
     const motion = window.gsap.matchMedia();
 
     motion.add("(prefers-reduced-motion: no-preference)", () => {
-      document.documentElement.classList.add("has-motion");
       const hero = document.querySelector(".hero-story");
-      const heroLayout = document.querySelector(".hero-layout");
       const heroImage = document.querySelector(".hero-image");
       const heroCopy = document.querySelector(".hero-copy");
-      const heroVisual = document.querySelector(".hero-visual");
-      const scrollCue = document.querySelector(".scroll-cue");
-      const mobile = window.matchMedia("(max-width: 720px)").matches;
 
       window.gsap.fromTo(
-        [heroCopy, heroVisual],
+        heroCopy,
         { autoAlpha: 0, y: 18 },
-        { autoAlpha: 1, y: 0, duration: 0.78, stagger: 0.12, ease: "power3.out", clearProps: "opacity,visibility,transform" }
+        { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }
       );
 
-      window.gsap.timeline({
-        scrollTrigger: {
-          trigger: hero,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: true,
-          pin: heroLayout,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-        .to(heroImage, { scale: mobile ? 0.84 : 0.82, ease: "none" }, 0)
-        .to(heroCopy, { autoAlpha: 0, y: -22, ease: "none" }, 0.12)
-        .to(scrollCue, { autoAlpha: 0, ease: "none" }, 0.08);
+      window.gsap.fromTo(
+        heroImage,
+        { scale: 1.085 },
+        {
+          scale: 1.015,
+          ease: "none",
+          scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
+        }
+      );
+
+      window.gsap.to(heroCopy, {
+        y: -12,
+        autoAlpha: 0.5,
+        ease: "none",
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
+      });
 
       document.querySelectorAll("[data-reveal]").forEach((element, index) => {
         window.gsap.fromTo(
@@ -125,18 +126,14 @@
             autoAlpha: 1,
             y: 0,
             duration: 0.65,
-            delay: (index % 2) * 0.06,
+            delay: (index % 2) * 0.05,
             ease: "power3.out",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 86%",
-              once: true,
-            },
+            scrollTrigger: { trigger: element, start: "top 88%", once: true },
           }
         );
       });
 
-      return () => document.documentElement.classList.remove("has-motion");
+      window.addEventListener("load", window.ScrollTrigger.refresh, { once: true });
     });
   }
 })();

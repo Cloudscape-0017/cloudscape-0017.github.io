@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="description" content="一份以生成图像与动态影像为起点的个人视觉档案，记录守望者、巨龙与夜色中的奇幻片段。">
+  <meta name="description" content="云阙：一组关于云海宫城、东方建筑与天上日常的场景气氛探索。">
   <meta name="robots" content="noindex, nofollow, noarchive">
   <meta name="referrer" content="no-referrer">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <title>雾境 · 个人图像档案</title>
+  <meta name="theme-color" content="#0b121a">
+  <title>云阙 · 场景气氛档案</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./assets/css/site.css">
   <script defer src="./assets/vendor/gsap.min.js"></script>
@@ -15,132 +16,186 @@
   <script defer src="./assets/js/site.js"></script>
 </head>
 <body>
-  <a class="skip-link" href="#works">跳到作品</a>
+  <a class="skip-link" href="#works">跳到场景档案</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="雾境，回到页面顶部">
-      <span class="brand-mark" aria-hidden="true">雾</span>
-      <span class="brand-name">雾境 <small>图像日记</small></span>
+    <a class="brand" href="#top" aria-label="云阙，回到页面顶部">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 27h22M10 23V13l8-6 8 6v10M14 23v-7h8v7M5 29h26"/><path d="M17 4h2"/></svg></span>
+      <span class="brand-name">云阙 <small>场景档案</small></span>
     </a>
     <nav class="main-nav" aria-label="主要导航">
-      <a href="#works">作品 <span>08</span></a>
-      <a href="#motion">影像 <span>01</span></a>
-      <a href="#about">关于创作</a>
+      <a href="#works">场景 <span>15</span></a>
+      <a href="#motion">影像</a>
+      <a href="#about">创作札记</a>
     </nav>
   </header>
 
   <main id="top">
     <section class="hero-story" aria-labelledby="hero-title">
       <div class="hero-layout">
+        <img class="hero-image" src="./assets/images/00-cloudfall-overview.webp" width="2200" height="1188" alt="云海之上的群岛宫城，瀑布从山崖垂落，桥廊连接远处的殿宇。" fetchpriority="high" decoding="async">
+        <div class="hero-shade" aria-hidden="true"></div>
         <div class="hero-copy">
-          <p class="eyebrow"><span class="eyebrow-dot"></span> 个人图像档案 <span class="eyebrow-divider">/</span> 01</p>
-          <h1 id="hero-title">把想象，<br><span>留在画面里。</span></h1>
-          <p class="hero-intro">以生成图像为起点，记录一组关于守望者、巨龙与夜色的奇幻片段。</p>
-          <a class="primary-link" href="#works">浏览这组作品 <span aria-hidden="true">↘</span></a>
-          <dl class="hero-facts" aria-label="作品档案信息">
-            <div><dt>系列</dt><dd>雾境之章</dd></div>
-            <div><dt>精选画面</dt><dd>08 <small>幅</small></dd></div>
-            <div><dt>主题</dt><dd>奇幻叙事</dd></div>
-          </dl>
+          <p class="eyebrow"><span class="eyebrow-rule" aria-hidden="true"></span>场景气氛 <span class="eyebrow-separator">/</span> 云阙系列</p>
+          <h1 id="hero-title">在云海之上，<br><span>重构一座天宫。</span></h1>
+          <p class="hero-intro">沿着悬空的水系、层叠的屋檐与通往天际的长阶，走进一座仍在生长的云上城邦。</p>
+          <a class="primary-link" href="#works">进入场景档案 <span aria-hidden="true">↘</span></a>
         </div>
-
-        <figure class="hero-visual">
-          <div class="hero-frame">
-            <img class="hero-image" src="./assets/images/moon-ring.webp" width="1726" height="911" alt="两位旅人站在环形遗迹与巨龙之间，夜色映在水面上。" fetchpriority="high" decoding="async">
-          </div>
-          <span class="frame-index" aria-hidden="true">FRAME <b>01</b> — 08</span>
-          <figcaption><span>月环之下</span><span>生成图像 · 奇幻叙事</span></figcaption>
-        </figure>
-
-        <a class="scroll-cue" href="#works"><span class="scroll-cue-line" aria-hidden="true"></span>向下，进入作品</a>
+        <div class="hero-facts" aria-label="系列信息">
+          <p><span>场景系列</span><strong>云阙</strong></p>
+          <p><span>精选视点</span><strong>15 <small>幅</small></strong></p>
+          <p><span>主题</span><strong>东方幻想建筑</strong></p>
+        </div>
+        <p class="hero-caption"><span>封面 / 云瀑群岛</span><span>世界总览</span></p>
+        <a class="scroll-cue" href="#works"><span class="scroll-cue-line" aria-hidden="true"></span>向下，开始漫游</a>
       </div>
     </section>
 
     <section class="works-section" id="works" aria-labelledby="works-title">
       <div class="section-heading" data-reveal>
         <div>
-          <p class="section-kicker"><span>作品档案</span><span>01 — 08</span></p>
-          <h2 id="works-title">一段故事，<span>八张画面。</span></h2>
+          <p class="section-kicker"><span>空间索引</span><span>精选场景 / 15</span></p>
+          <h2 id="works-title">一座天宫，<span>四段漫游。</span></h2>
         </div>
-        <p class="section-intro">从远景到近处，从交锋到停歇。<br>沿着同一个奇幻世界，慢慢看下去。</p>
+        <p class="section-intro">从抵达城门，到走进庭院与日常。<br>每一处空间，都留下不同的光与尺度。</p>
       </div>
 
-      <div class="works-grid" aria-label="精选生成图像作品">
-        <button class="work-card work-card--wide" type="button" data-work-index="0" aria-label="查看作品 01：月环之下">
-          <span class="work-image"><img src="./assets/images/moon-ring.webp" width="1726" height="911" alt="两位旅人面对水面中央的巨龙与环形遗迹。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>01 / 场景</small><strong>月环之下</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card" type="button" data-work-index="1" aria-label="查看作品 02：蓝瞳">
-          <span class="work-image"><img src="./assets/images/blue-eye.webp" width="1727" height="911" alt="黑色龙鳞与一只映出蓝光的眼睛。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>02 / 细节</small><strong>蓝瞳</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card" type="button" data-work-index="2" aria-label="查看作品 03：弦光">
-          <span class="work-image"><img src="./assets/images/bow-light.webp" width="1937" height="812" alt="弓弦牵出一道穿过暴雨的蓝色光束。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>03 / 动作</small><strong>弦光</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card work-card--wide" type="button" data-work-index="3" aria-label="查看作品 04：水镜">
-          <span class="work-image"><img src="./assets/images/water-mirror.webp" width="1672" height="941" alt="水面倒映着环形遗迹和远处的人影。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>04 / 倒影</small><strong>水镜</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card" type="button" data-work-index="4" aria-label="查看作品 05：并肩">
-          <span class="work-image"><img src="./assets/images/two-travelers.webp" width="1672" height="941" alt="两位旅人并肩站在水边，望向夜色中的遗迹。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>05 / 角色</small><strong>并肩</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card" type="button" data-work-index="5" aria-label="查看作品 06：交锋">
-          <span class="work-image"><img src="./assets/images/dragon-crossing.webp" width="1727" height="911" alt="旅人与巨龙在水雾间交锋。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>06 / 交锋</small><strong>交锋</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card work-card--wide" type="button" data-work-index="6" aria-label="查看作品 07：暂歇">
-          <span class="work-image"><img src="./assets/images/quiet-after.webp" width="1725" height="912" alt="两位旅人短暂坐在水边休息，龙影与遗迹留在远处。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>07 / 静帧</small><strong>暂歇</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-        <button class="work-card" type="button" data-work-index="7" aria-label="查看作品 08：归途">
-          <span class="work-image"><img src="./assets/images/far-arch.webp" width="1672" height="941" alt="两位旅人在水面上的环形遗迹之间缓步前行。" loading="lazy" decoding="async"></span>
-          <span class="work-caption"><span><small>08 / 远景</small><strong>归途</strong></span><span class="work-open" aria-hidden="true">↗</span></span>
-        </button>
-      </div>
+      <section class="chapter" aria-labelledby="chapter-entry">
+        <div class="chapter-heading" data-reveal>
+          <span class="chapter-number">01</span>
+          <div><h3 id="chapter-entry">入阙之路</h3><p>环门、御阶与跨越云海的长桥，构成抵达天宫的第一段路径。</p></div>
+          <span class="chapter-count">04 个视点</span>
+        </div>
+        <div class="works-grid">
+          <button class="work-card work-card--lead" type="button" data-work-index="0" aria-label="查看场景 01：金环天门">
+            <span class="work-image"><img src="./assets/images/01-ring-gate.webp" width="1536" height="1024" alt="巨大的金色圆环立于石阶与宫殿之间，成为云上城门的地标。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>01 / 城门</small><strong>金环天门</strong></span><span class="work-description">一道圆环，标记出尘世与天宫的边界。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="1" aria-label="查看场景 02：凌霄御阶">
+            <span class="work-image"><img src="./assets/images/02-imperial-steps.webp" width="1536" height="1024" alt="长长的石阶跨越悬崖，通向云层之上的主殿。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>02 / 主轴</small><strong>凌霄御阶</strong></span><span class="work-description">长阶顺着山势升起，尽头隐入云光。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="2" aria-label="查看场景 03：中央天街">
+            <span class="work-image"><img src="./assets/images/12-central-heavenly-street.webp" width="1700" height="896" alt="高耸的门楼与连续廊柱沿中央街道展开，街道通往远方的云上宫城。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>03 / 街巷</small><strong>中央天街</strong></span><span class="work-description">门楼一重接一重，把城市的方向拉向远方。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card work-card--wide" type="button" data-work-index="3" aria-label="查看场景 04：云海光桥">
+            <span class="work-image"><img src="./assets/images/13-cloudlight-bridge.webp" width="1700" height="896" alt="明亮的石桥从宫殿回廊伸向云海，连接远处的悬空建筑。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>04 / 连接</small><strong>云海光桥</strong></span><span class="work-description">一座桥穿过云雾，把彼此遥望的宫殿接在一起。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="chapter-core">
+        <div class="chapter-heading" data-reveal>
+          <span class="chapter-number">02</span>
+          <div><h3 id="chapter-core">天宫中枢</h3><p>仪式、议事、藏书与观星，在同一座宫城里围绕天象展开。</p></div>
+          <span class="chapter-count">04 个视点</span>
+        </div>
+        <div class="works-grid">
+          <button class="work-card work-card--lead" type="button" data-work-index="4" aria-label="查看场景 05：九霄议事殿">
+            <span class="work-image"><img src="./assets/images/03-celestial-council.webp" width="1536" height="1024" alt="高挑的金色柱廊延伸至宫殿深处，晨光落在抛光石地上。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>05 / 内殿</small><strong>九霄议事殿</strong></span><span class="work-description">日光穿过层层立柱，让大殿显得安静而辽阔。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="5" aria-label="查看场景 06：星轨祭坛">
+            <span class="work-image"><img src="./assets/images/04-orbit-altar.webp" width="1536" height="1024" alt="同心圆仪轨围绕中央水池铺展，石阶与亭阁环抱祭坛广场。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>06 / 仪式</small><strong>星轨祭坛</strong></span><span class="work-description">同心圆层层铺开，像一张落在地面的星图。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="6" aria-label="查看场景 07：天书阁">
+            <span class="work-image"><img src="./assets/images/08-scripture-library.webp" width="1536" height="1024" alt="多层环形书阁围绕中央光庭展开，层架间陈列着卷册与典藏。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>07 / 藏书</small><strong>天书阁</strong></span><span class="work-description">回廊围出明亮的中庭，典籍沿着圆形楼层层叠而上。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card work-card--wide" type="button" data-work-index="7" aria-label="查看场景 08：司天观星台">
+            <span class="work-image"><img src="./assets/images/09-stargazer-pavilion.webp" width="1536" height="1024" alt="铜金色天体仪矗立在观星平台中央，宫亭与云海环绕四周。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>08 / 天象</small><strong>司天观星台</strong></span><span class="work-description">天体仪安放在高台正中，四周只剩开阔的云与天。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="chapter-life">
+        <div class="chapter-heading" data-reveal>
+          <span class="chapter-number">03</span>
+          <div><h3 id="chapter-life">云上日常</h3><p>瀑布边的院落、停泊的仙舟与云下市集，让宏大的仙境有了生活的温度。</p></div>
+          <span class="chapter-count">04 个视点</span>
+        </div>
+        <div class="works-grid">
+          <button class="work-card work-card--lead" type="button" data-work-index="8" aria-label="查看场景 09：云瀑庭院">
+            <span class="work-image"><img src="./assets/images/05-waterfall-courtyard.webp" width="1536" height="1024" alt="层层庭院沿着瀑布山崖修建，屋檐与石桥隐现在水雾之间。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>09 / 山居</small><strong>云瀑庭院</strong></span><span class="work-description">建筑顺着峭壁生长，瀑声把不同高度的院落连成一体。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="9" aria-label="查看场景 10：仙舟云港">
+            <span class="work-image"><img src="./assets/images/06-cloud-harbor.webp" width="1536" height="1024" alt="几艘仙舟停泊在伸出云层的石质港台旁，远方浮着孤立的高塔。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>10 / 云港</small><strong>仙舟云港</strong></span><span class="work-description">船只泊在云层边缘，像一座城仍在等待远行者归来。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="10" aria-label="查看场景 11：灵泉药园">
+            <span class="work-image"><img src="./assets/images/07-spirit-garden.webp" width="1536" height="1024" alt="花树、曲水和小亭围出清静的山间园林，云光落在池面上。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>11 / 园林</small><strong>灵泉药园</strong></span><span class="work-description">花木与泉池把喧闹隔在外面，留下一处可以停步的庭院。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card work-card--wide" type="button" data-work-index="11" aria-label="查看场景 12：下城仙市">
+            <span class="work-image"><img src="./assets/images/10-sky-market.webp" width="1536" height="1024" alt="台阶、亭廊和水道穿过繁密的云上街市，行人点缀在层叠的建筑之间。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>12 / 街市</small><strong>下城仙市</strong></span><span class="work-description">水道穿过层层街巷，天宫的日常也在这里慢慢展开。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="chapter chapter--last" aria-labelledby="chapter-horizon">
+        <div class="chapter-heading" data-reveal>
+          <span class="chapter-number">04</span>
+          <div><h3 id="chapter-horizon">远景与回廊</h3><p>从高处回望城邦，再沿着水庭回到安静的一隅。</p></div>
+          <span class="chapter-count">02 个视点</span>
+        </div>
+        <div class="works-grid works-grid--final">
+          <button class="work-card work-card--panorama" type="button" data-work-index="12" aria-label="查看场景 13：云顶天宫">
+            <span class="work-image"><img src="./assets/images/14-palace-above-clouds.webp" width="1700" height="896" alt="群山、桥梁与重檐宫殿组成一幅横跨云海的天宫全景。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>13 / 远望</small><strong>云顶天宫</strong></span><span class="work-description">从山谷望出去，桥梁与殿宇在云间延伸成一座完整的城。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+          <button class="work-card" type="button" data-work-index="13" aria-label="查看场景 14：日照水庭">
+            <span class="work-image"><img src="./assets/images/15-sunlit-water-court.webp" width="1700" height="896" alt="明亮的回廊环抱镜面水池，阳光沿着水面投下长长的光影。" loading="lazy" decoding="async"></span>
+            <span class="work-caption"><span class="work-meta"><small>14 / 水庭</small><strong>日照水庭</strong></span><span class="work-description">最后一束光落在水面，回廊也渐渐安静下来。</span><span class="work-open" aria-hidden="true">↗</span></span>
+          </button>
+        </div>
+      </section>
     </section>
 
     <section class="motion-section" id="motion" aria-labelledby="motion-title">
-      <div class="section-heading" data-reveal>
-        <div>
-          <p class="section-kicker"><span>动态影像</span><span>01 / 01</span></p>
-          <h2 id="motion-title">让画面，<span>继续流动。</span></h2>
+      <div class="motion-inner">
+        <div class="section-heading" data-reveal>
+          <div><p class="section-kicker"><span>动态影像</span><span>作品集 / 01</span></p><h2 id="motion-title">让光，<span>继续流动。</span></h2></div>
+          <p class="section-intro">灯光与合成作品集。<br>点击播放，观看完整影像。</p>
         </div>
-        <p class="section-intro">一段宽银幕影像，点击播放即可观看。</p>
+        <figure class="motion-feature" data-reveal>
+          <div class="motion-frame">
+            <video controls playsinline preload="metadata" poster="./assets/videos/lighting-compositing-showreel-2026-poster.webp" aria-label="灯光与合成作品集 2026 视频">
+              <source src="./assets/videos/lighting-compositing-showreel-2026.mp4" type="video/mp4">
+              当前浏览器暂不支持播放此视频。
+            </video>
+          </div>
+          <figcaption class="motion-caption"><span><small>灯光 / 合成 · 2026</small><strong>灯光 / 合成作品集</strong></span><span>02:29</span></figcaption>
+        </figure>
       </div>
-      <figure class="motion-feature" data-reveal>
-        <div class="motion-frame">
-          <video controls playsinline preload="metadata" poster="./assets/videos/lighting-compositing-showreel-2026-poster.webp" aria-label="灯光与合成作品集 2026 视频">
-            <source src="./assets/videos/lighting-compositing-showreel-2026.mp4" type="video/mp4">
-            您的浏览器暂不支持播放此视频。
-          </video>
-        </div>
-        <figcaption class="motion-caption"><span><small>LIGHTING / COMPOSITING · 2026</small><strong>灯光 / 合成作品集</strong></span><span>02:29</span></figcaption>
-      </figure>
     </section>
 
     <section class="about-section" id="about" aria-labelledby="about-title">
-      <div class="about-index" data-reveal><span>关于创作</span><span>NOTES / 01</span></div>
+      <div class="about-index" data-reveal><span>创作札记</span><span>札记 / 01</span></div>
       <div class="about-copy" data-reveal>
-        <h2 id="about-title">这里收录一段<span>仍在生长的想象。</span></h2>
-        <p>以同一段奇幻场景为线索，尝试不同的镜头距离、人物关系与光线。每张画面都是这个世界的一次停留，彼此相邻时，故事才慢慢浮现。</p>
+        <h2 id="about-title">场景从尺度开始，<span>向光线延伸。</span></h2>
+        <p>我喜欢从一座城开始，先建立远景与动线，再走进庭院、长廊和日常角落。云阙以东方建筑为线索，记录空间、光线与尺度交织出的气氛。</p>
       </div>
-      <a class="about-link" href="#works" data-reveal>回到作品 <span aria-hidden="true">↑</span></a>
+      <a class="about-link" href="#works" data-reveal>重新漫游 <span aria-hidden="true">↗</span></a>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="brand" href="#top" aria-label="回到页面顶部"><span class="brand-mark" aria-hidden="true">雾</span><span class="brand-name">雾境 <small>图像日记</small></span></a>
-    <p>个人图像档案 <span>·</span> 2026</p>
+    <a class="brand brand--footer" href="#top" aria-label="回到页面顶部"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 27h22M10 23V13l8-6 8 6v10M14 23v-7h8v7M5 29h26"/><path d="M17 4h2"/></svg></span><span class="brand-name">云阙 <small>场景档案</small></span></a>
+    <p>场景气氛档案 <span>·</span> 2026</p>
     <a class="footer-top" href="#top">回到顶部 <span aria-hidden="true">↑</span></a>
   </footer>
 
-  <dialog class="lightbox" id="lightbox" aria-label="作品详情">
+  <dialog class="lightbox" id="lightbox" aria-label="场景详情">
     <div class="lightbox-panel">
-      <div class="lightbox-topline"><p class="lightbox-count" id="lightbox-count" aria-live="polite"></p><button class="lightbox-close" type="button" data-close aria-label="关闭作品详情">关闭 <span aria-hidden="true">×</span></button></div>
+      <div class="lightbox-topline"><p class="lightbox-count" id="lightbox-count" aria-live="polite"></p><button class="lightbox-close" type="button" data-close aria-label="关闭场景详情">关闭 <span aria-hidden="true">×</span></button></div>
       <div class="lightbox-body">
-        <div class="lightbox-media"><img id="lightbox-image" src="./assets/images/moon-ring.webp" width="1726" height="911" alt=""></div>
-        <div class="lightbox-details"><p class="section-kicker"><span>作品档案</span><span id="lightbox-tag"></span></p><h2 id="lightbox-title"></h2><p class="lightbox-hint">使用左右方向键切换作品</p><div class="lightbox-controls"><button type="button" data-previous aria-label="上一幅作品">←</button><button type="button" data-next aria-label="下一幅作品">→</button></div></div>
+        <div class="lightbox-media"><img id="lightbox-image" src="./assets/images/01-ring-gate.webp" width="1536" height="1024" alt=""></div>
+        <div class="lightbox-details"><p class="section-kicker"><span>场景档案</span><span id="lightbox-tag"></span></p><h2 id="lightbox-title"></h2><p class="lightbox-description" id="lightbox-description"></p><p class="lightbox-hint">使用左右方向键切换场景</p><div class="lightbox-controls"><button type="button" data-previous aria-label="上一个场景">←</button><button type="button" data-next aria-label="下一个场景">→</button></div></div>
       </div>
     </div>
   </dialog>
