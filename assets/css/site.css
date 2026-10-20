@@ -1368,3 +1368,13 @@ html:has(.home-page) { background: #111d27; }
   object-fit: cover;
   background: var(--night);
 }
+
+.motion-page .motion-frame video:fullscreen,
+.motion-page .motion-frame video:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  max-height: none;
+  aspect-ratio: auto;
+  object-fit: contain;
+  background: #000;
+}
