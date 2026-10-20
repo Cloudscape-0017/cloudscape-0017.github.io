@@ -2,8 +2,7 @@
   const contactDialog = document.querySelector("#contact-dialog");
   const contactTrigger = document.querySelector("[data-contact-open]");
   const contactClose = document.querySelector("[data-contact-close]");
-  const contactCopy = document.querySelector("[data-contact-copy]");
-  const contactCopyStatus = document.querySelector("[data-contact-copy-status]");
+  const contactCopies = Array.from(document.querySelectorAll("[data-contact-copy]"));
 
   if (contactDialog && contactTrigger && contactClose) {
     contactTrigger.addEventListener("click", () => {
@@ -22,9 +21,7 @@
     contactDialog.addEventListener("close", () => contactTrigger.focus({ preventScroll: true }));
   }
 
-  if (contactCopy && contactCopyStatus) {
-    let feedbackTimer = 0;
-
+  if (contactCopies.length) {
     async function copyText(text) {
       if (navigator.clipboard && window.isSecureContext) {
         try {
@@ -45,30 +42,39 @@
       if (!copied) throw new Error("Clipboard copy failed");
     }
 
-    contactCopy.addEventListener("click", async () => {
-      const email = document.querySelector(".contact-email")?.textContent.trim();
-      if (!email) return;
+    contactCopies.forEach((button) => {
+      let feedbackTimer = 0;
+      const label = button.dataset.copyLabel || "信息";
+      const target = button.dataset.copyTarget;
+      const copyStatus = button.closest(".contact-copy-wrap")?.querySelector("[data-contact-copy-status]");
+      const defaultTooltip = button.dataset.tooltip;
+      const defaultAriaLabel = button.getAttribute("aria-label");
 
-      window.clearTimeout(feedbackTimer);
-      try {
-        await copyText(email);
-        contactCopy.dataset.copyState = "copied";
-        contactCopy.dataset.tooltip = "已复制";
-        contactCopy.setAttribute("aria-label", "已复制邮箱");
-        contactCopyStatus.textContent = "已复制邮箱";
-      } catch {
-        contactCopy.dataset.copyState = "error";
-        contactCopy.dataset.tooltip = "复制失败";
-        contactCopy.setAttribute("aria-label", "复制失败，请手动选择邮箱");
-        contactCopyStatus.textContent = "复制失败，请手动选择邮箱";
-      }
+      button.addEventListener("click", async () => {
+        const text = target ? contactDialog?.querySelector(target)?.textContent.trim() : "";
+        if (!text) return;
 
-      feedbackTimer = window.setTimeout(() => {
-        contactCopy.dataset.copyState = "idle";
-        contactCopy.dataset.tooltip = "复制邮箱";
-        contactCopy.setAttribute("aria-label", "复制电子邮箱");
-        contactCopyStatus.textContent = "";
-      }, 1800);
+        window.clearTimeout(feedbackTimer);
+        try {
+          await copyText(text);
+          button.dataset.copyState = "copied";
+          button.dataset.tooltip = "已复制";
+          button.setAttribute("aria-label", `已复制${label}`);
+          if (copyStatus) copyStatus.textContent = `已复制${label}`;
+        } catch {
+          button.dataset.copyState = "error";
+          button.dataset.tooltip = "复制失败";
+          button.setAttribute("aria-label", `复制失败，请手动选择${label}`);
+          if (copyStatus) copyStatus.textContent = `复制失败，请手动选择${label}`;
+        }
+
+        feedbackTimer = window.setTimeout(() => {
+          button.dataset.copyState = "idle";
+          button.dataset.tooltip = defaultTooltip;
+          button.setAttribute("aria-label", defaultAriaLabel);
+          if (copyStatus) copyStatus.textContent = "";
+        }, 1800);
+      });
     });
   }
 
