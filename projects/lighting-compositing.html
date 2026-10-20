@@ -10,10 +10,10 @@
   <meta name="theme-color" content="#12202a">
   <title>云景 · 灯光与合成 · Cloudscape</title>
   <link rel="icon" href="../assets/favicon.svg?v=gallery-20261020" type="image/svg+xml">
-  <link rel="stylesheet" href="../assets/css/site.css?v=gallery-20261020">
+  <link rel="stylesheet" href="../assets/css/site.css?v=contact-20261020">
   <script defer src="../assets/vendor/gsap.min.js"></script>
   <script defer src="../assets/vendor/ScrollTrigger.min.js"></script>
-  <script defer src="../assets/js/site.js?v=gallery-20261020"></script>
+  <script defer src="../assets/js/site.js?v=contact-20261020"></script>
 </head>
 <body class="motion-project-page">
   <a class="skip-link" href="#showreel">跳到作品影像</a>
@@ -22,8 +22,26 @@
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M7 27h22M10 23V13l8-6 8 6v10M14 23v-7h8v7M5 29h26"/><path d="M17 4h2"/></svg></span>
       <span class="brand-name">Cloudscape <small>作品集</small></span>
     </a>
-    <nav class="main-nav" aria-label="主要导航"><a href="../index.html#project-index">返回作品集 <span aria-hidden="true">↖</span></a></nav>
+    <nav class="main-nav" aria-label="主要导航">
+      <a href="../index.html#project-index">返回作品集 <span aria-hidden="true">↖</span></a>
+      <button class="contact-trigger" type="button" data-contact-open aria-label="打开联系方式" aria-haspopup="dialog" aria-controls="contact-dialog">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14v9H3zM3.5 6l6.5 5 6.5-5"/></svg>
+        <span>联系方式</span>
+      </button>
+    </nav>
   </header>
+  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title">
+    <div class="contact-panel">
+      <div class="contact-panel-head">
+        <span>CONTACT</span>
+        <button class="contact-close" type="button" data-contact-close aria-label="关闭联系方式">×</button>
+      </div>
+      <div class="contact-card-content">
+        <h2 id="contact-title">吴**</h2>
+        <a class="contact-email" href="mailto:477751341@qq.com">477751341@qq.com <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </dialog>
   <main id="top"><section class="motion-section motion-page" id="showreel" aria-labelledby="motion-title">
       <div class="motion-inner">
         <div class="motion-page-heading" data-reveal>

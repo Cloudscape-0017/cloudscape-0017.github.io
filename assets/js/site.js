@@ -1,4 +1,25 @@
 (() => {
+  const contactDialog = document.querySelector("#contact-dialog");
+  const contactTrigger = document.querySelector("[data-contact-open]");
+  const contactClose = document.querySelector("[data-contact-close]");
+
+  if (contactDialog && contactTrigger && contactClose) {
+    contactTrigger.addEventListener("click", () => {
+      contactDialog.showModal();
+      contactClose.focus({ preventScroll: true });
+    });
+
+    const closeContact = () => {
+      if (contactDialog.open) contactDialog.close();
+    };
+
+    contactClose.addEventListener("click", closeContact);
+    contactDialog.addEventListener("click", (event) => {
+      if (event.target === contactDialog) closeContact();
+    });
+    contactDialog.addEventListener("close", () => contactTrigger.focus({ preventScroll: true }));
+  }
+
   const cards = Array.from(document.querySelectorAll(".work-card"));
   const dialog = document.querySelector("#lightbox");
   const lightboxImage = document.querySelector("#lightbox-image");

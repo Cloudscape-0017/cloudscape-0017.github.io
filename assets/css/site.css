@@ -155,6 +155,48 @@ button { color: inherit; }
 .main-nav a:hover::after { transform: scaleX(1); transform-origin: left; }
 .main-nav a span { margin-left: 5px; color: var(--gold); font-size: 10px; }
 
+.main-nav .contact-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(14, 25, 34, 0.42);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.contact-trigger svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.35; stroke-linecap: round; stroke-linejoin: round; }
+.main-nav .contact-trigger:hover,
+.main-nav .contact-trigger:focus-visible { transform: translateY(-1px); border-color: var(--gold-light); color: var(--gold-light); }
+
+.contact-dialog {
+  width: min(440px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  padding: 0;
+  overflow: visible;
+  border: 1px solid rgba(234, 216, 173, 0.48);
+  background: var(--night-soft);
+  color: var(--paper);
+  box-shadow: 0 28px 100px rgba(0, 0, 0, 0.45);
+}
+
+.contact-dialog::backdrop { background: rgba(5, 10, 15, 0.77); backdrop-filter: blur(7px); }
+.contact-panel { padding: clamp(22px, 5vw, 34px); background: linear-gradient(145deg, rgba(24, 39, 49, 0.98), rgba(13, 23, 31, 0.99)); }
+.contact-panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--gold-light); font-size: 9px; letter-spacing: 0.2em; }
+.contact-close { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--line-strong); background: transparent; color: var(--paper); font-size: 20px; line-height: 1; cursor: pointer; transition: background-color 160ms ease, color 160ms ease; }
+.contact-close:hover, .contact-close:focus-visible { background: var(--gold-light); color: var(--night); }
+.contact-card-content { padding-top: 24px; }
+.contact-card-content h2 { margin: 0 0 13px; color: var(--paper); font-family: var(--serif); font-size: clamp(26px, 6vw, 34px); font-weight: 400; letter-spacing: 0.08em; }
+.contact-email { display: inline-flex; align-items: center; gap: 10px; color: var(--gold-light); font-size: clamp(14px, 3.5vw, 16px); letter-spacing: 0.02em; text-decoration: none; overflow-wrap: anywhere; }
+.contact-email:hover { color: #fff7e6; }
+.contact-email span { font-size: 13px; }
+
 .hero-story {
   position: relative;
   height: min(920px, 100svh);
@@ -712,7 +754,7 @@ button { color: inherit; }
 @media (max-width: 900px) {
   .site-header { height: 74px; }
   .brand { min-width: auto; }
-  .brand-name small { display: none; }
+  .brand-name small { display: inline; font-size: 8px; letter-spacing: 0.07em; }
   .hero-story { min-height: 660px; }
   .hero-copy { width: min(680px, 72vw); }
   .section-heading { grid-template-columns: 1fr 0.72fr; gap: 32px; }
@@ -1230,11 +1272,28 @@ html:has(.home-page) { background: #111d27; }
   transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
 }
 
+.home-page .main-nav .contact-trigger {
+  padding: 8px 12px;
+  border-color: rgba(234, 216, 173, 0.38);
+  background: rgba(14, 25, 34, 0.48);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.025em;
+  backdrop-filter: blur(10px);
+}
+
 .home-page .main-nav a::after { display: none; }
 
 .home-page .main-nav a:hover,
 .home-page .main-nav a:focus-visible {
   transform: translateY(-1px);
+  border-color: var(--gold-light);
+  background: rgba(20, 33, 43, 0.9);
+  color: var(--gold-light);
+}
+
+.home-page .main-nav .contact-trigger:hover,
+.home-page .main-nav .contact-trigger:focus-visible {
   border-color: var(--gold-light);
   background: rgba(20, 33, 43, 0.9);
   color: var(--gold-light);
@@ -1270,11 +1329,23 @@ html:has(.home-page) { background: #111d27; }
 
 @media (max-width: 640px) {
   .home-page .site-header { padding-inline: 14px; gap: 10px; }
-  .home-page .brand { min-width: 0; gap: 7px; }
+  .home-page .brand { min-width: 0; gap: 6px; }
   .home-page .brand-mark { width: 31px; height: 31px; }
   .home-page .brand-name { font-size: 11px; }
-  .home-page .main-nav { flex: 0 0 auto; gap: 5px; }
-.home-page .main-nav a { padding: 7px 9px; font-size: 10px; letter-spacing: 0; }
+  .home-page .brand-name small { display: inline; margin-left: -5px; font-size: 7px; letter-spacing: 0; }
+  .home-page .main-nav { flex: 0 0 auto; gap: 3px; }
+  .home-page .main-nav a { padding: 6px 7px; font-size: 9px; letter-spacing: 0; }
+  .home-page .main-nav .contact-trigger { width: 30px; height: 30px; padding: 0; }
+  .home-page .main-nav .contact-trigger span { display: none; }
+}
+
+@media (max-width: 360px) {
+  .home-page .site-header { padding-inline: 10px; gap: 7px; }
+  .home-page .brand { gap: 5px; }
+  .home-page .brand-name { font-size: 10px; }
+  .home-page .brand-name small { font-size: 6px; }
+  .home-page .main-nav { gap: 2px; }
+  .home-page .main-nav a { padding-inline: 6px; }
 }
 
 /* Match the 301:135 source frame so its edges never show letterbox bars. */
