@@ -10,10 +10,10 @@
   <meta name="theme-color" content="#12202a">
   <title>Cloudscape 作品集</title>
   <link rel="icon" href="./assets/favicon.svg?v=gallery-20261020" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/css/site.css?v=contact-20261020">
+  <link rel="stylesheet" href="./assets/css/site.css?v=contact-copy-20261020">
   <script defer src="./assets/vendor/gsap.min.js"></script>
   <script defer src="./assets/vendor/ScrollTrigger.min.js"></script>
-  <script defer src="./assets/js/site.js?v=contact-20261020"></script>
+  <script defer src="./assets/js/site.js?v=contact-copy-20261020"></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#project-index">跳到作品索引</a>
@@ -40,7 +40,19 @@
       </div>
       <div class="contact-card-content">
         <h2 id="contact-title">吴**</h2>
-        <a class="contact-email" href="mailto:477751341@qq.com">477751341@qq.com <span aria-hidden="true">↗</span></a>
+        <div class="contact-email-row">
+          <div class="contact-email-info">
+            <span class="contact-email-label">电子邮箱：</span>
+            <a class="contact-email" href="mailto:477751341@qq.com">477751341@qq.com</a>
+          </div>
+          <div class="contact-copy-wrap">
+            <button class="contact-copy" type="button" data-contact-copy data-copy-state="idle" data-tooltip="复制邮箱" aria-label="复制电子邮箱">
+              <svg class="copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8.5" y="7.5" width="11" height="13" rx="1.5"/><path d="M15.5 7.5v-2A1.5 1.5 0 0 0 14 4H6A1.5 1.5 0 0 0 4.5 5.5v11A1.5 1.5 0 0 0 6 18h2.5"/></svg>
+              <svg class="check-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg>
+            </button>
+            <span class="contact-copy-status" data-contact-copy-status role="status" aria-live="polite"></span>
+          </div>
+        </div>
       </div>
     </div>
   </dialog>

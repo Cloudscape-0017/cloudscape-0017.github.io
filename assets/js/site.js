@@ -2,6 +2,8 @@
   const contactDialog = document.querySelector("#contact-dialog");
   const contactTrigger = document.querySelector("[data-contact-open]");
   const contactClose = document.querySelector("[data-contact-close]");
+  const contactCopy = document.querySelector("[data-contact-copy]");
+  const contactCopyStatus = document.querySelector("[data-contact-copy-status]");
 
   if (contactDialog && contactTrigger && contactClose) {
     contactTrigger.addEventListener("click", () => {
@@ -18,6 +20,56 @@
       if (event.target === contactDialog) closeContact();
     });
     contactDialog.addEventListener("close", () => contactTrigger.focus({ preventScroll: true }));
+  }
+
+  if (contactCopy && contactCopyStatus) {
+    let feedbackTimer = 0;
+
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        try {
+          await navigator.clipboard.writeText(text);
+          return;
+        } catch {}
+      }
+
+      const field = document.createElement("textarea");
+      field.value = text;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.append(field);
+      field.select();
+      const copied = document.execCommand("copy");
+      field.remove();
+      if (!copied) throw new Error("Clipboard copy failed");
+    }
+
+    contactCopy.addEventListener("click", async () => {
+      const email = document.querySelector(".contact-email")?.textContent.trim();
+      if (!email) return;
+
+      window.clearTimeout(feedbackTimer);
+      try {
+        await copyText(email);
+        contactCopy.dataset.copyState = "copied";
+        contactCopy.dataset.tooltip = "已复制";
+        contactCopy.setAttribute("aria-label", "已复制邮箱");
+        contactCopyStatus.textContent = "已复制邮箱";
+      } catch {
+        contactCopy.dataset.copyState = "error";
+        contactCopy.dataset.tooltip = "复制失败";
+        contactCopy.setAttribute("aria-label", "复制失败，请手动选择邮箱");
+        contactCopyStatus.textContent = "复制失败，请手动选择邮箱";
+      }
+
+      feedbackTimer = window.setTimeout(() => {
+        contactCopy.dataset.copyState = "idle";
+        contactCopy.dataset.tooltip = "复制邮箱";
+        contactCopy.setAttribute("aria-label", "复制电子邮箱");
+        contactCopyStatus.textContent = "";
+      }, 1800);
+    });
   }
 
   const cards = Array.from(document.querySelectorAll(".work-card"));

@@ -187,15 +187,28 @@ button { color: inherit; }
 }
 
 .contact-dialog::backdrop { background: rgba(5, 10, 15, 0.77); backdrop-filter: blur(7px); }
-.contact-panel { padding: clamp(22px, 5vw, 34px); background: linear-gradient(145deg, rgba(24, 39, 49, 0.98), rgba(13, 23, 31, 0.99)); }
-.contact-panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 14px; border-bottom: 1px solid var(--line); color: var(--gold-light); font-size: 9px; letter-spacing: 0.2em; }
+.contact-panel { position: relative; padding: clamp(24px, 5vw, 38px); background: radial-gradient(ellipse at 100% 0%, rgba(216, 189, 131, 0.08), transparent 43%), linear-gradient(145deg, rgba(24, 39, 49, 0.99), rgba(13, 23, 31, 0.99)); }
+.contact-panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 15px; border-bottom: 1px solid var(--line); color: var(--gold-light); font-size: 9px; letter-spacing: 0.22em; }
 .contact-close { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--line-strong); background: transparent; color: var(--paper); font-size: 20px; line-height: 1; cursor: pointer; transition: background-color 160ms ease, color 160ms ease; }
 .contact-close:hover, .contact-close:focus-visible { background: var(--gold-light); color: var(--night); }
-.contact-card-content { padding-top: 24px; }
-.contact-card-content h2 { margin: 0 0 13px; color: var(--paper); font-family: var(--serif); font-size: clamp(26px, 6vw, 34px); font-weight: 400; letter-spacing: 0.08em; }
-.contact-email { display: inline-flex; align-items: center; gap: 10px; color: var(--gold-light); font-size: clamp(14px, 3.5vw, 16px); letter-spacing: 0.02em; text-decoration: none; overflow-wrap: anywhere; }
+.contact-card-content { padding-top: 26px; }
+.contact-card-content h2 { margin: 0 0 20px; color: var(--paper); font-family: var(--serif); font-size: clamp(28px, 6vw, 36px); font-weight: 400; letter-spacing: 0.1em; }
+.contact-email-row { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 11px 10px 15px; border: 1px solid rgba(234, 216, 173, 0.24); background: rgba(7, 14, 20, 0.42); }
+.contact-email-info { min-width: 0; flex: 1 1 auto; display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 8px; row-gap: 2px; }
+.contact-email-label { color: var(--paper-muted); font-size: 12px; letter-spacing: 0.04em; white-space: nowrap; }
+.contact-email { min-width: 0; color: var(--gold-light); font-size: clamp(14px, 3.5vw, 16px); letter-spacing: 0.01em; text-decoration: none; overflow-wrap: anywhere; transition: color 160ms ease; }
 .contact-email:hover { color: #fff7e6; }
-.contact-email span { font-size: 13px; }
+.contact-copy-wrap { position: relative; flex: 0 0 auto; }
+.contact-copy { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid rgba(234, 216, 173, 0.36); border-radius: 50%; background: rgba(234, 216, 173, 0.035); color: var(--gold-light); cursor: pointer; transition: transform 180ms ease, border-color 180ms ease, color 180ms ease, background-color 180ms ease, box-shadow 180ms ease; }
+.contact-copy:hover, .contact-copy:focus-visible { transform: translateY(-1px); border-color: var(--gold-light); background: rgba(234, 216, 173, 0.12); box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18); }
+.contact-copy svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.contact-copy .check-icon { display: none; }
+.contact-copy[data-copy-state="copied"] { border-color: var(--gold-light); background: var(--gold-light); color: var(--night); }
+.contact-copy[data-copy-state="copied"] .copy-icon { display: none; }
+.contact-copy[data-copy-state="copied"] .check-icon { display: block; }
+.contact-copy::after { position: absolute; z-index: 2; top: calc(100% + 9px); right: -5px; padding: 6px 10px; border: 1px solid var(--line-strong); border-radius: 999px; background: #172630; color: var(--paper); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.24); font-size: 10px; letter-spacing: 0.03em; line-height: 1.4; white-space: nowrap; opacity: 0; transform: translateY(-3px); pointer-events: none; content: attr(data-tooltip); transition: opacity 140ms ease, transform 140ms ease; }
+.contact-copy:hover::after, .contact-copy:focus-visible::after, .contact-copy[data-copy-state="copied"]::after, .contact-copy[data-copy-state="error"]::after { opacity: 1; transform: translateY(0); }
+.contact-copy-status { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; }
 
 .hero-story {
   position: relative;
