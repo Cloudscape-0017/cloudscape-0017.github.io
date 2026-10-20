@@ -1214,3 +1214,73 @@ html:has(.home-page) { background: #111d27; }
   .home-page .project-entry-description { font-size: 12px; }
   .home-page .project-entry-arrow { grid-row: 1 / 4; }
 }
+
+/* Make the three real destinations visible as quiet, tap-friendly controls. */
+.home-page .main-nav { gap: clamp(7px, 1vw, 14px); }
+
+.home-page .main-nav a {
+  padding: 8px 15px;
+  border: 1px solid rgba(234, 216, 173, 0.38);
+  border-radius: 999px;
+  background: rgba(14, 25, 34, 0.48);
+  color: var(--paper);
+  font-size: 12px;
+  letter-spacing: 0.025em;
+  backdrop-filter: blur(10px);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.home-page .main-nav a::after { display: none; }
+
+.home-page .main-nav a:hover,
+.home-page .main-nav a:focus-visible {
+  transform: translateY(-1px);
+  border-color: var(--gold-light);
+  background: rgba(20, 33, 43, 0.9);
+  color: var(--gold-light);
+}
+
+.home-page .main-nav .nav-index {
+  border-color: var(--gold-light);
+  background: var(--gold-light);
+  color: var(--night);
+}
+
+.home-page .main-nav .nav-index:hover,
+.home-page .main-nav .nav-index:focus-visible {
+  background: var(--paper);
+  color: var(--night);
+}
+
+.home-page .primary-link {
+  min-height: 44px;
+  padding: 5px 11px 5px 16px;
+  border: 1px solid rgba(234, 216, 173, 0.55);
+  border-radius: 3px;
+  background: rgba(14, 25, 34, 0.48);
+  backdrop-filter: blur(10px);
+  transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.home-page .primary-link:hover {
+  border-color: var(--gold-light);
+  background: var(--gold-light);
+  color: var(--night);
+}
+
+@media (max-width: 640px) {
+  .home-page .site-header { padding-inline: 14px; gap: 10px; }
+  .home-page .brand { min-width: 0; gap: 7px; }
+  .home-page .brand-mark { width: 31px; height: 31px; }
+  .home-page .brand-name { font-size: 11px; }
+  .home-page .main-nav { flex: 0 0 auto; gap: 5px; }
+.home-page .main-nav a { padding: 7px 9px; font-size: 10px; letter-spacing: 0; }
+}
+
+/* Match the 301:135 source frame so its edges never show letterbox bars. */
+.motion-frame { background: var(--night); }
+.motion-frame video {
+  aspect-ratio: 301 / 135;
+  object-fit: cover;
+  background: var(--night);
+}
