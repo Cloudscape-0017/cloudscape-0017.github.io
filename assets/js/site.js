@@ -1,4 +1,40 @@
 (() => {
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const collectionCount = document.querySelector(".collection-count");
+  if (collectionCount) collectionCount.textContent = String(document.querySelectorAll(".project-entry").length).padStart(2, "0");
+  const header = document.querySelector(".site-header");
+  if (header) {
+    const hero = document.querySelector(".home-page .hero-story");
+    const heroImage = document.querySelector(".home-atmosphere .hero-image");
+    const worksImage = document.querySelector(".works-atmosphere-image");
+    const atmosphereDim = document.querySelector(".atmosphere-dim");
+    let framePending = false;
+    const updateHeader = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 28);
+      const distance = document.documentElement.scrollHeight - window.innerHeight;
+      header.style.setProperty("--reading-progress", distance > 0 ? Math.min(1, Math.max(0, window.scrollY / distance)) : 0);
+      // Keep the artwork readable with reduced motion or unavailable animation libraries.
+      if (hero && heroImage && worksImage && atmosphereDim && (reducedMotion.matches || !window.gsap || !window.ScrollTrigger)) {
+        const progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.94)));
+        heroImage.style.opacity = 1 - 0.88 * progress;
+        worksImage.style.opacity = 0.94 * Math.min(1, Math.max(0, (progress - 0.15) / 0.85));
+        atmosphereDim.style.opacity = 0.06 + 0.62 * progress;
+      }
+      framePending = false;
+    };
+    const requestHeaderUpdate = () => {
+      if (framePending) return;
+      framePending = true;
+      window.requestAnimationFrame(updateHeader);
+    };
+    updateHeader();
+    window.addEventListener("scroll", requestHeaderUpdate, { passive: true });
+    window.addEventListener("resize", requestHeaderUpdate, { passive: true });
+    window.addEventListener("pageshow", requestHeaderUpdate);
+    window.addEventListener("load", requestHeaderUpdate, { once: true });
+    reducedMotion.addEventListener("change", requestHeaderUpdate);
+  }
+
   const contactDialog = document.querySelector("#contact-dialog");
   const contactTrigger = document.querySelector("[data-contact-open]");
   const contactClose = document.querySelector("[data-contact-close]");
@@ -87,7 +123,6 @@
   const lightboxDescription = document.querySelector("#lightbox-description");
   const lightboxCount = document.querySelector("#lightbox-count");
   const panel = document.querySelector(".lightbox-panel");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   if (cards.length && dialog && lightboxImage && lightboxMedia) {
 
@@ -183,28 +218,26 @@
       const heroCopy = document.querySelector(".hero-copy");
 
       if (hero && heroImage && heroCopy) {
-        window.gsap.fromTo(
-          heroCopy,
-          { autoAlpha: 0, y: 18 },
-          { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" }
-        );
-
-        window.gsap.fromTo(
-          heroImage,
-          { scale: 1.085 },
-          {
-            scale: 1.015,
-            ease: "none",
-            scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
-          }
-        );
-
-        window.gsap.to(heroCopy, {
-          y: -12,
-          autoAlpha: 0.5,
-          ease: "none",
-          scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true, invalidateOnRefresh: true },
+        window.gsap.fromTo(heroCopy, { autoAlpha: 0, y: 18 }, {
+          autoAlpha: 1, y: 0, duration: 0.58, ease: "power3.out"
         });
+
+        const atmosphere = document.querySelector(".home-atmosphere");
+        if (atmosphere) {
+          const scene = window.gsap.timeline({
+            defaults: { ease: "none" },
+            scrollTrigger: {
+              trigger: hero,
+              start: "top top",
+              end: () => `+=${hero.offsetHeight * 0.94}`,
+              scrub: 0.35,
+              invalidateOnRefresh: true,
+            },
+          });
+          scene.fromTo(heroImage, { scale: 1.035, autoAlpha: 1 }, { scale: 1.19, autoAlpha: 0.12, duration: 1 }, 0);
+          scene.fromTo(".works-atmosphere-image", { scale: 1.09, autoAlpha: 0 }, { scale: 1, autoAlpha: 0.94, duration: 0.85 }, 0.15);
+          scene.fromTo(".atmosphere-dim", { opacity: 0.06 }, { opacity: 0.68, duration: 1 }, 0);
+        }
       }
 
       document.querySelectorAll("[data-reveal]").forEach((element, index) => {

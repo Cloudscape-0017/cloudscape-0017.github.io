@@ -10,10 +10,10 @@
   <meta name="theme-color" content="#12202a">
   <title>Cloudscape 作品集</title>
   <link rel="icon" href="./assets/favicon.svg?v=gallery-20261020" type="image/svg+xml">
-  <link rel="stylesheet" href="./assets/css/site.css?v=20261020-player-fix">
+  <link rel="stylesheet" href="./assets/css/site.css?v=20261020-cloud-flow">
   <script defer src="./assets/vendor/gsap.min.js"></script>
   <script defer src="./assets/vendor/ScrollTrigger.min.js"></script>
-  <script defer src="./assets/js/site.js?v=contact-id-20261020"></script>
+  <script defer src="./assets/js/site.js?v=20261020-cloud-flow"></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#project-index">跳到作品索引</a>
@@ -23,14 +23,17 @@
       <span class="brand-name">Cloudscape <small>作品集</small></span>
     </a>
     <nav class="main-nav" aria-label="主要导航">
-      <a class="nav-index" href="#project-index">作品</a>
-      <a href="./projects/yunding-tianguan.html">场景</a>
-      <a href="./projects/lighting-compositing.html">影像</a>
+      <div class="nav-links">
+        <a class="nav-index" href="#project-index" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx=".8"/><rect x="12" y="3" width="5" height="5" rx=".8"/><rect x="3" y="12" width="5" height="5" rx=".8"/><rect x="12" y="12" width="5" height="5" rx=".8"/></svg>作品集</a>
+        <a href="./projects/yunding-tianguan.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m2 15 5-8 4 5 2-3 5 6H2Z"/><circle cx="13.5" cy="5" r="1.5"/></svg>场景</a>
+        <a href="./projects/lighting-compositing.html"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m8 7 5 3-5 3Z"/></svg>影像</a>
+      </div>
       <button class="contact-trigger" type="button" data-contact-open aria-label="打开联系方式" aria-haspopup="dialog" aria-controls="contact-dialog">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14v9H3zM3.5 6l6.5 5 6.5-5"/></svg>
         <span>联系方式</span>
       </button>
     </nav>
+    <span class="header-progress" aria-hidden="true"></span>
   </header>
   <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-title">
     <div class="contact-panel">
@@ -69,10 +72,15 @@
     </div>
   </dialog>
   <main id="top">
+    <div class="home-atmosphere">
+      <img class="hero-image" src="./assets/images/00-cloudfall-overview.webp" width="2200" height="1188" alt="云海之上的群岛宫城，瀑布从山崖垂落，桥廊连接远处的殿宇。" fetchpriority="high" decoding="async">
+      <img class="works-atmosphere-image" src="./assets/images/05-waterfall-courtyard.webp" width="1700" height="1133" alt="" aria-hidden="true" decoding="async">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="atmosphere-dim" aria-hidden="true"></div>
+    </div>
     <section class="hero-story" aria-labelledby="hero-title">
       <div class="hero-layout">
-        <img class="hero-image" src="./assets/images/00-cloudfall-overview.webp" width="2200" height="1188" alt="云海之上的群岛宫城，瀑布从山崖垂落，桥廊连接远处的殿宇。" fetchpriority="high" decoding="async">
-        <div class="hero-shade" aria-hidden="true"></div>
+
         <div class="hero-copy">
           <h1 id="hero-title">云顶天宫</h1>
           <p class="hero-intro">云海之上，悬空山水与宫城相连。</p>
@@ -83,7 +91,11 @@
     <section class="works-section works-index-section" id="project-index" aria-labelledby="project-index-heading">
       <div class="project-index">
         <div class="project-index-heading" data-reveal>
-          <h2 class="project-index-label" id="project-index-heading">作品</h2>
+          <div class="collection-title">
+            <span class="collection-emblem" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 36h32M12 32V20l12-9 12 9v12M18 32V22h12v10M5 41h38M21 6h6M7 19h5M36 19h5"/><path d="M24 3v5M4 25h4M40 25h4"/></svg></span>
+            <h2 class="project-index-label" id="project-index-heading">作品集</h2>
+          </div>
+          <div class="collection-summary"><span class="collection-count">02</span><span class="collection-unit">个项目</span></div>
         </div>
         <div class="project-index-grid">
           <a class="project-entry" href="./projects/yunding-tianguan.html" aria-label="查看作品：云顶天宫，东方幻想场景气氛，14 幅" data-reveal>
@@ -91,7 +103,7 @@
             <span class="project-entry-copy">
               <span class="project-entry-type">01 / 场景气氛 · 14 幅</span>
               <strong>云顶天宫</strong>
-              <span class="project-entry-description">云海群岛与层叠宫城，沿着一道光桥通往天际。</span>
+              <span class="project-entry-description">云海群岛与层叠宫城，一道光桥通往天际。</span>
               <span class="project-entry-arrow" aria-hidden="true">↗</span>
             </span>
           </a>
