@@ -1,12 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title desc">
   <title id="title">Cloudscape · 云景</title>
-  <desc id="desc">C 形天际云弧围合飞檐宫阙，开口与流云呈现悬空之境。</desc>
-  <g stroke="#D8BD83" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M50 15A24 24 0 1 0 32 55h12c5 0 8-3 8-7a7 7 0 0 0-13.2-3.2" stroke-width="1.8"/>
-    <path d="M32 13v5" stroke-width="1.8"/>
-    <path d="M18 29c5.5.3 10.4-4.7 14-9 3.6 4.3 8.5 9.3 14 9-3 2.4-6 3-10 3h-8c-4 0-7-.6-10-3Z" fill="#D8BD83" fill-opacity=".12" stroke-width="1.8"/>
-    <path d="M24 32v8m16-8v8M21 40h22m-14 0v-4a3 3 0 0 1 6 0v4" stroke-width="1.8"/>
-    <path d="M11 46h10a4.5 4.5 0 1 0-4.1-6.3" stroke-width="1.8"/>
-    <path d="M29 48h11" stroke-width="1.6" opacity=".62"/>
-  </g>
+  <desc id="desc">两道悬浮的云层切面，以流动曲线和开放的留白构成 C。</desc>
+  <path d="M8 29C10.5 16.5 20.5 9 34 9H56L49 18H35C27 18 21.5 21.8 18.5 29H8Z" fill="#EEE7D8"/>
+  <path d="M8 35H18.5C21.5 42.2 27 46 35 46H58L51 55H34C20.5 55 10.5 47.5 8 35Z" fill="#D8BD83"/>
 </svg>
