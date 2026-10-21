@@ -2,6 +2,9 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const collectionCount = document.querySelector(".collection-count");
   if (collectionCount) collectionCount.textContent = String(document.querySelectorAll(".project-entry").length).padStart(2, "0");
+  const railLinks = Array.from(document.querySelectorAll("[data-rail-section]"));
+  const readingValue = document.querySelector(".reading-value");
+  const indexSection = document.querySelector("#project-index");
   const header = document.querySelector(".site-header");
   if (header) {
     const hero = document.querySelector(".home-page .hero-story");
@@ -12,7 +15,19 @@
     const updateHeader = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 28);
       const distance = document.documentElement.scrollHeight - window.innerHeight;
-      header.style.setProperty("--reading-progress", distance > 0 ? Math.min(1, Math.max(0, window.scrollY / distance)) : 0);
+      const pageProgress = distance > 0 ? Math.min(1, Math.max(0, window.scrollY / distance)) : 0;
+      header.style.setProperty("--reading-progress", pageProgress);
+      document.documentElement.style.setProperty("--page-progress", pageProgress);
+      if (readingValue) readingValue.textContent = `${String(Math.round(pageProgress * 100)).padStart(2, "0")}%`;
+      if (railLinks.length && indexSection) {
+        const activeSection = indexSection.getBoundingClientRect().top <= window.innerHeight * 0.55 ? "works" : "cover";
+        railLinks.forEach((link) => {
+          const active = link.dataset.railSection === activeSection;
+          link.classList.toggle("is-current", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      }
       // Keep the artwork readable with reduced motion or unavailable animation libraries.
       if (hero && heroImage && worksImage && atmosphereDim && (reducedMotion.matches || !window.gsap || !window.ScrollTrigger)) {
         const progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.94)));
@@ -36,15 +51,17 @@
   }
 
   const contactDialog = document.querySelector("#contact-dialog");
-  const contactTrigger = document.querySelector("[data-contact-open]");
+  const contactTriggers = Array.from(document.querySelectorAll("[data-contact-open]"));
   const contactClose = document.querySelector("[data-contact-close]");
   const contactCopies = Array.from(document.querySelectorAll("[data-contact-copy]"));
 
-  if (contactDialog && contactTrigger && contactClose) {
-    contactTrigger.addEventListener("click", () => {
+  if (contactDialog && contactTriggers.length && contactClose) {
+    let contactReturnTarget = null;
+    contactTriggers.forEach((trigger) => trigger.addEventListener("click", () => {
+      contactReturnTarget = trigger;
       contactDialog.showModal();
       contactClose.focus({ preventScroll: true });
-    });
+    }));
 
     const closeContact = () => {
       if (contactDialog.open) contactDialog.close();
@@ -54,7 +71,7 @@
     contactDialog.addEventListener("click", (event) => {
       if (event.target === contactDialog) closeContact();
     });
-    contactDialog.addEventListener("close", () => contactTrigger.focus({ preventScroll: true }));
+    contactDialog.addEventListener("close", () => contactReturnTarget?.focus({ preventScroll: true }));
   }
 
   if (contactCopies.length) {

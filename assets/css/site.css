@@ -1507,3 +1507,159 @@ html { scroll-padding-top: 108px; }
   object-fit: contain;
   background: #000;
 }
+
+/* Cloudscape identity: the cloud arc carries the silhouette, without a badge. */
+.site-header .brand .brand-mark--cloud {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.brand-mark--cloud img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.site-header .brand:hover .brand-mark--cloud { background: none; }
+.collection-emblem { border: 0; border-radius: 0; background: none; }
+.collection-emblem::after { display: none; }
+.collection-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.home-page .works-index-section { padding-bottom: clamp(42px, 5vw, 72px); }
+.home-page .project-entry:last-child { padding-bottom: 0; }
+.motion-project-page .motion-page { min-height: 0; padding-bottom: clamp(48px, 6vw, 90px); }
+.scene-project-page .project-gallery-section { padding-bottom: clamp(50px, 6vw, 86px); }
+
+/* Quiet edge navigation balances the wide landscape without covering the work. */
+.side-rail { display: none; }
+@media (min-width: 1180px) and (min-height: 580px) {
+  .side-rail {
+    position: fixed;
+    z-index: 20;
+    top: 52%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 36px;
+    gap: 20px;
+    transform: translateY(-50%);
+  }
+  .side-rail--left { left: max(16px, calc((100vw - 1560px) / 2)); }
+  .side-rail--right { right: max(16px, calc((100vw - 1560px) / 2)); }
+}
+.rail-signature { writing-mode: vertical-rl; font-family: var(--serif); font-size: 17px; line-height: 1; letter-spacing: .3em; color: var(--gold-light); }
+.rail-chapters { display: grid; gap: 9px; }
+.rail-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 34px;
+  min-height: 76px;
+  padding: 8px 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background: rgba(12, 25, 34, .22);
+  color: var(--paper-muted);
+  text-decoration: none;
+  transition: border-color 180ms ease, color 180ms ease, background-color 180ms ease;
+}
+.rail-link > span:last-child { writing-mode: vertical-rl; font-size: 12px; line-height: 1.2; letter-spacing: .2em; }
+.rail-number { font-family: Georgia, serif; font-size: 12px; line-height: 1; font-style: italic; }
+.rail-link.is-current { border-color: rgba(234, 216, 173, .45); color: var(--gold-light); background: rgba(216, 189, 131, .09); }
+.rail-link:hover { border-color: var(--gold); color: var(--gold-light); }
+.rail-tail { width: 1px; height: 34px; background: linear-gradient(var(--gold), transparent); opacity: .5; }
+.reading-rail { display: flex; align-items: center; flex-direction: column; gap: 17px; color: var(--gold-light); }
+.reading-value { min-width: 30px; text-align: center; font-family: Georgia, serif; font-size: 14px; font-variant-numeric: tabular-nums; }
+.reading-track { position: relative; display: block; width: 1px; height: 132px; background: rgba(234, 216, 173, .25); }
+.reading-fill { position: absolute; inset: 0; background: var(--gold-light); transform: scaleY(var(--page-progress, 0)); transform-origin: center top; }
+.reading-caption { writing-mode: vertical-rl; font-size: 12px; letter-spacing: .2em; color: var(--paper-muted); }
+.rail-top { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid rgba(234, 216, 173, .35); border-radius: 50%; background: rgba(12, 25, 34, .4); color: var(--gold-light); transition: background-color 180ms ease, color 180ms ease; }
+.rail-top svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.25; stroke-linecap: round; stroke-linejoin: round; }
+.rail-top:hover { background: var(--gold-light); color: var(--night); }
+
+/* A complete closing panel: identity, work routes, and the existing contact. */
+.site-footer.portfolio-footer {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  min-height: 0;
+  padding: clamp(48px, 5.3vw, 76px) var(--gutter) 22px;
+  overflow: hidden;
+  border-top: 1px solid rgba(234, 216, 173, .25);
+  background: #0d1b25;
+}
+.portfolio-footer::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  background: linear-gradient(90deg, rgba(13, 27, 37, .98) 10%, rgba(13, 27, 37, .87) 58%, rgba(13, 27, 37, .72)), url("../images/14-palace-above-clouds.webp") center 48% / cover;
+  opacity: .8;
+}
+.footer-content {
+  width: min(100%, 1360px);
+  margin: 0 auto;
+  padding-bottom: 45px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, .85fr) minmax(230px, 1fr);
+  gap: clamp(32px, 4.5vw, 68px);
+  align-items: start;
+}
+.footer-identity { display: inline-flex; align-items: center; gap: 18px; color: var(--paper); text-decoration: none; }
+.footer-identity > img { display: block; flex: 0 0 auto; width: 68px; height: 68px; }
+.footer-identity > span { display: grid; gap: 2px; }
+.footer-identity strong { font-family: Georgia, "Times New Roman", serif; font-size: clamp(28px, 3vw, 39px); font-weight: 400; line-height: 1.2; letter-spacing: .015em; }
+.footer-chinese-name { font-family: var(--serif); font-size: 15px; letter-spacing: .4em; color: var(--gold-light); }
+.portfolio-footer .footer-statement { margin-top: 20px; color: var(--paper); font-family: var(--serif); font-size: 17px; line-height: 1.8; letter-spacing: .08em; }
+.portfolio-footer .footer-disciplines { margin-top: 8px; color: var(--paper-muted); font-size: 13px; letter-spacing: .08em; line-height: 1.8; }
+.portfolio-footer .footer-disciplines span { padding: 0 9px; color: rgba(216, 189, 131, .55); }
+.portfolio-footer h2 { margin: 5px 0 21px; color: var(--paper-muted); font-size: 13px; font-weight: 400; letter-spacing: .2em; line-height: 1.4; }
+.footer-works { display: grid; }
+.footer-works > a { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 0 0 14px; margin-bottom: 15px; color: var(--paper); text-decoration: none; border-bottom: 1px solid rgba(234, 216, 173, .15); transition: color 180ms ease, border-color 180ms ease; }
+.footer-works > a:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+.footer-works > a > span { display: grid; gap: 4px; font-family: var(--serif); font-size: 18px; line-height: 1.5; }
+.footer-works small { color: var(--paper-muted); font-family: var(--sans); font-size: 12px; letter-spacing: .03em; }
+.footer-works svg { flex: 0 0 auto; width: 15px; height: 15px; fill: none; stroke: var(--gold); stroke-width: 1.1; transition: transform 180ms ease; }
+.footer-works > a:hover { color: var(--gold-light); border-color: rgba(234, 216, 173, .45); }
+.footer-works > a:hover svg { transform: translate(2px, -2px); }
+.footer-contact { min-width: 0; }
+.footer-email { display: inline-block; color: var(--paper); font-size: clamp(14px, 1.2vw, 17px); text-decoration-thickness: 1px; text-decoration-color: rgba(234, 216, 173, .4); text-underline-offset: 7px; white-space: nowrap; }
+.footer-email:hover { color: var(--gold-light); }
+.footer-contact-button { display: flex; align-items: center; gap: 19px; margin-top: 27px; min-height: 42px; padding: 8px 14px; border: 1px solid rgba(234, 216, 173, .4); border-radius: 4px; background: rgba(234, 216, 173, .035); color: var(--gold-light); font-size: 13px; cursor: pointer; transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease; }
+.footer-contact-button svg, .portfolio-footer .footer-top svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+.footer-contact-button:hover { border-color: var(--gold-light); background: var(--gold-light); color: var(--night); }
+.footer-contact-button:active { transform: scale(.98); }
+.footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 24px; max-width: 1360px; margin: 0 auto; padding-top: 21px; border-top: 1px solid rgba(234, 216, 173, .17); }
+.portfolio-footer .footer-bottom p { color: var(--paper-muted); font-size: 11px; line-height: 1.6; letter-spacing: .04em; }
+.portfolio-footer .footer-bottom p span { margin-left: 20px; padding: 0; color: var(--paper-muted); }
+.portfolio-footer .footer-top { display: flex; align-items: center; gap: 14px; padding: 6px 0; color: var(--gold-light); font-size: 12px; text-decoration: none; white-space: nowrap; }
+.portfolio-footer .footer-top svg { transition: transform 180ms ease; }
+.portfolio-footer .footer-top:hover svg { transform: translateY(-3px); }
+@media (max-width: 1000px) {
+  .footer-content { grid-template-columns: minmax(0, 1fr) minmax(230px, 1fr); gap: 36px 42px; }
+  .footer-about { grid-column: 1 / -1; }
+}
+@media (max-width: 640px) {
+  .site-header .brand .brand-mark--cloud { width: 34px; height: 34px; }
+  .site-footer.portfolio-footer { padding: 40px 22px 19px; }
+  .footer-content { grid-template-columns: minmax(0, 1fr); gap: 31px; padding-bottom: 30px; }
+  .footer-about { grid-column: auto; }
+  .footer-identity { gap: 14px; }
+  .footer-identity > img { width: 58px; height: 58px; }
+  .footer-identity strong { font-size: 30px; }
+  .footer-chinese-name { font-size: 14px; }
+  .portfolio-footer .footer-statement { margin-top: 16px; font-size: 16px; letter-spacing: .04em; }
+  .portfolio-footer .footer-disciplines { margin-top: 5px; }
+  .footer-works { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 20px; }
+  .footer-works h2 { grid-column: 1 / -1; margin-bottom: 16px; }
+  .footer-works > a, .footer-works > a:last-child { gap: 9px; margin: 0; padding: 0; border: 0; }
+  .footer-works > a > span { font-size: 16px; }
+  .footer-works small { font-size: 12px; }
+  .footer-works svg { width: 13px; height: 13px; }
+  .footer-contact h2 { margin-bottom: 13px; }
+  .footer-email { font-size: 16px; }
+  .footer-contact-button { margin-top: 20px; }
+  .footer-bottom { gap: 16px; align-items: center; padding-top: 18px; }
+  .portfolio-footer .footer-bottom p { display: grid; gap: 3px; font-size: 10px; }
+  .portfolio-footer .footer-bottom p span { margin-left: 0; }
+  .portfolio-footer .footer-top { font-size: 11px; gap: 8px; }
+}
