@@ -1524,6 +1524,7 @@ html { scroll-padding-top: 108px; }
 .collection-emblem img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .home-page .works-index-section { padding-bottom: clamp(42px, 5vw, 72px); }
 .home-page .project-entry:last-child { padding-bottom: 0; }
+.home-page .project-entry-description { color: #e3dfd3; }
 .motion-project-page .motion-page { min-height: 0; padding-bottom: clamp(48px, 6vw, 90px); }
 .scene-project-page .project-gallery-section { padding-bottom: clamp(50px, 6vw, 86px); }
 
