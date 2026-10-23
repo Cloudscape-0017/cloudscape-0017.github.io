@@ -1508,6 +1508,9 @@ html { scroll-padding-top: 108px; }
   background: #000;
 }
 
+/* Preserve the current 2025 source canvas, including its edges. */
+.showreel-2025-page .motion-frame video { aspect-ratio: 20 / 9; object-fit: contain; }
+
 /* Cloudscape: two floating planes form a quiet, open C silhouette. */
 .site-header .brand .brand-mark--cloud {
   width: 44px;
