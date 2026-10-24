@@ -11,11 +11,14 @@
     const heroImage = document.querySelector(".home-atmosphere .hero-image");
     const worksImage = document.querySelector(".works-atmosphere-image");
     const atmosphereDim = document.querySelector(".atmosphere-dim");
+    const atmosphere = document.querySelector(".home-atmosphere");
     let framePending = false;
     const updateHeader = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 28);
       const distance = document.documentElement.scrollHeight - window.innerHeight;
       const pageProgress = distance > 0 ? Math.min(1, Math.max(0, window.scrollY / distance)) : 0;
+      const sceneProgress = hero ? Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.94))) : 0;
+      if (atmosphere) atmosphere.style.setProperty("--scene-progress", sceneProgress);
       header.style.setProperty("--reading-progress", pageProgress);
       document.documentElement.style.setProperty("--page-progress", pageProgress);
       if (readingValue) readingValue.textContent = `${String(Math.round(pageProgress * 100)).padStart(2, "0")}%`;
@@ -31,9 +34,9 @@
       // Keep the artwork readable with reduced motion or unavailable animation libraries.
       if (hero && heroImage && worksImage && atmosphereDim && (reducedMotion.matches || !window.gsap || !window.ScrollTrigger)) {
         const progress = Math.min(1, Math.max(0, window.scrollY / (hero.offsetHeight * 0.94)));
-        heroImage.style.opacity = 1 - 0.88 * progress;
-        worksImage.style.opacity = 0.94 * Math.min(1, Math.max(0, (progress - 0.15) / 0.85));
-        atmosphereDim.style.opacity = 0.06 + 0.62 * progress;
+        heroImage.style.opacity = 1 - progress;
+        worksImage.style.opacity = Math.min(1, Math.max(0, (progress - 0.15) / 0.85));
+        atmosphereDim.style.opacity = 0.06 + 0.10 * progress;
       }
       framePending = false;
     };
@@ -251,13 +254,25 @@
               invalidateOnRefresh: true,
             },
           });
-          scene.fromTo(heroImage, { scale: 1.035, autoAlpha: 1 }, { scale: 1.19, autoAlpha: 0.12, duration: 1 }, 0);
-          scene.fromTo(".works-atmosphere-image", { scale: 1.09, autoAlpha: 0 }, { scale: 1, autoAlpha: 0.94, duration: 0.85 }, 0.15);
-          scene.fromTo(".atmosphere-dim", { opacity: 0.06 }, { opacity: 0.68, duration: 1 }, 0);
+          scene.fromTo(heroImage, { scale: 1.035, autoAlpha: 1 }, { scale: 1.19, autoAlpha: 0, duration: 1 }, 0);
+          scene.fromTo(".works-atmosphere-image", { scale: 1.09, autoAlpha: 0 }, { scale: 1, autoAlpha: 1, duration: 0.85 }, 0.15);
+          scene.fromTo(".atmosphere-dim", { opacity: 0.06 }, { opacity: 0.16, duration: 1 }, 0);
         }
       }
 
       document.querySelectorAll("[data-reveal]").forEach((element, index) => {
+        if (element.matches(".project-entry")) {
+          const reveal = window.gsap.timeline({
+            scrollTrigger: { trigger: element, start: "top 90%", once: true },
+          });
+          reveal.fromTo(element.querySelector(".project-entry-cover"),
+            { autoAlpha: 0, clipPath: "inset(0 7% 0 0)" },
+            { autoAlpha: 1, clipPath: "inset(0 0% 0 0)", duration: .8, ease: "power3.out" }, 0);
+          reveal.fromTo(element.querySelector(".project-entry-copy"),
+            { autoAlpha: 0, x: 14 },
+            { autoAlpha: 1, x: 0, duration: .65, ease: "power3.out" }, .1);
+          return;
+        }
         window.gsap.fromTo(
           element,
           { autoAlpha: 0, y: 18 },

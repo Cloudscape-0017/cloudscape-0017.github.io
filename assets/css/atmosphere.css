@@ -1,0 +1,150 @@
+/* The generated cloud plate supplies texture; live light stays behind the work. */
+body { isolation: isolate; }
+.home-atmosphere .works-atmosphere-drift {
+  position: absolute;
+  inset: -3%;
+  animation: cloud-plate-drift 32s ease-in-out infinite alternate;
+}
+.home-atmosphere .works-atmosphere-image { object-position: 64% 50%; }
+.home-atmosphere .hero-shade { opacity: calc(1 - var(--scene-progress, 0) * .62); }
+.ambient-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: calc(.46 + var(--scene-progress, 0) * .54);
+  contain: strict;
+}
+.ambient-stage--page {
+  position: fixed;
+  z-index: -1;
+  background: linear-gradient(90deg, rgba(12, 23, 32, .88), rgba(12, 23, 32, .35)), url("../images/cloudscape-atmosphere.webp") 65% center / cover;
+  opacity: .72;
+}
+.ambient-light {
+  position: absolute;
+  display: block;
+  transform-origin: 65% 0;
+  will-change: transform;
+}
+.ambient-light--warm {
+  top: -54%;
+  right: -16%;
+  width: 94%;
+  height: 155%;
+  background: linear-gradient(113deg, transparent 29%, rgba(225, 190, 126, .02) 39%, rgba(230, 204, 156, .15) 47%, rgba(225, 190, 126, .035) 54%, transparent 64%);
+  filter: blur(32px);
+  animation: cloud-light-sweep 24s cubic-bezier(.45, 0, .55, 1) infinite alternate;
+}
+.ambient-light--cool {
+  right: -12%;
+  bottom: -31%;
+  width: 80%;
+  height: 74%;
+  background: radial-gradient(ellipse, rgba(98, 155, 178, .15), transparent 65%);
+  filter: blur(28px);
+  animation: cloud-air-drift 19s ease-in-out infinite alternate;
+}
+.ambient-motes { position: absolute; inset: 0; opacity: .72; }
+.ambient-mote {
+  position: absolute;
+  left: var(--mote-x);
+  top: var(--mote-y);
+  width: var(--mote-size);
+  height: var(--mote-size);
+  border-radius: 50%;
+  background: #f0dbab;
+  box-shadow: 0 0 6px rgba(228, 206, 157, .35);
+  opacity: 0;
+  animation: cloud-mote-rise var(--mote-duration) linear var(--mote-delay) infinite;
+}
+@keyframes cloud-plate-drift {
+  from { transform: translate3d(-.6%, .7%, 0) scale(1.015); }
+  to { transform: translate3d(.6%, -.7%, 0) scale(1.04); }
+}
+@keyframes cloud-light-sweep {
+  from { transform: translate3d(calc(var(--light-x, 0px) - 18px), var(--light-y, 0px), 0) rotate(-7deg); opacity: .6; }
+  to { transform: translate3d(calc(var(--light-x, 0px) + 22px), var(--light-y, 0px), 0) rotate(5deg); opacity: 1; }
+}
+@keyframes cloud-air-drift {
+  from { transform: translate3d(var(--light-x, 0px), 12px, 0) scale(1); opacity: .5; }
+  to { transform: translate3d(calc(var(--light-x, 0px) - 24px), -18px, 0) scale(1.12); opacity: .85; }
+}
+@keyframes cloud-mote-rise {
+  0% { opacity: 0; transform: translate3d(0, 65px, 0); }
+  18% { opacity: var(--mote-opacity); }
+  75% { opacity: calc(var(--mote-opacity) * .75); }
+  100% { opacity: 0; transform: translate3d(var(--mote-drift), -120px, 0); }
+}
+
+/* A brief, soft reflection makes the project respond without bleaching its art. */
+.project-entry { position: relative; }
+.home-page .project-entry::before {
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(238, 214, 162, .85), transparent);
+  opacity: 0;
+  transform: scaleX(.45);
+  transition: opacity 350ms ease, transform 650ms cubic-bezier(.2, .7, .2, 1);
+  pointer-events: none;
+}
+.home-page .project-entry:hover::before,
+.home-page .project-entry:focus-visible::before { opacity: 1; transform: scaleX(1); }
+.project-entry-cover::before {
+  position: absolute;
+  z-index: 1;
+  inset: -25% -60%;
+  content: "";
+  background: linear-gradient(112deg, transparent 39%, rgba(255, 239, 202, .085) 49%, transparent 59%);
+  transform: translate3d(-60%, 0, 0);
+  opacity: 0;
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .project-entry:hover .project-entry-cover::before { animation: cloud-cover-reflection 900ms cubic-bezier(.2, .7, .2, 1) both; }
+}
+@keyframes cloud-cover-reflection {
+  0% { opacity: 0; transform: translate3d(-60%, 0, 0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate3d(60%, 0, 0); }
+}
+.portfolio-footer::before {
+  inset: -6%;
+  background: linear-gradient(90deg, rgba(9, 19, 28, .82), rgba(9, 19, 28, .3)), url("../images/cloudscape-atmosphere.webp") 64% 65% / cover;
+  opacity: .9;
+  animation: cloud-plate-drift 32s ease-in-out infinite alternate-reverse;
+}
+.portfolio-footer::after {
+  position: absolute;
+  top: 0;
+  left: 18%;
+  width: 34%;
+  height: 1px;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(234, 216, 173, .65), transparent);
+  animation: cloud-footer-light 18s ease-in-out infinite alternate;
+}
+@keyframes cloud-footer-light { to { transform: translateX(85%); opacity: .35; } }
+html[data-ambient-paused] .ambient-stage *,
+html[data-ambient-paused] .works-atmosphere-drift,
+html[data-ambient-paused] .portfolio-footer::before,
+html[data-ambient-paused] .portfolio-footer::after { animation-play-state: paused; }
+@media (max-width: 640px) {
+  .home-atmosphere .works-atmosphere-image { object-position: 73% 50%; }
+  .ambient-light--warm { width: 135%; right: -38%; opacity: .65; }
+  .ambient-motes { opacity: .45; }
+  .ambient-mote:nth-child(n + 13) { display: none; }
+  .home-atmosphere .works-atmosphere-drift { animation-duration: 40s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-light, .ambient-motes { display: none; }
+  .home-atmosphere .works-atmosphere-drift,
+  .portfolio-footer::before,
+  .portfolio-footer::after,
+  .project-entry-cover::before { animation: none !important; transform: none !important; }
+  .project-entry-cover::before { display: none; }
+  .home-page .project-entry::before { transition: none; }
+}
