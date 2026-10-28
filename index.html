@@ -14,8 +14,10 @@
   <link rel="stylesheet" href="./assets/css/atmosphere.css?v=20261023-atmosphere-1">
   <script defer src="./assets/vendor/gsap.min.js"></script>
   <script defer src="./assets/vendor/ScrollTrigger.min.js"></script>
-  <script defer src="./assets/js/site.js?v=20261023-atmosphere-1"></script>
+  <script defer src="./assets/js/site.js?v=20261028-browse-1"></script>
   <script defer src="./assets/js/atmosphere.js?v=20261023-atmosphere-1"></script>
+  <link rel="stylesheet" href="./assets/css/portfolio.css?v=20261028-browse-1">
+  <script defer src="./assets/js/portfolio.js?v=20261028-browse-1"></script>
 </head>
 <body class="home-page">
   <a class="skip-link" href="#project-index">跳到作品索引</a>
@@ -28,7 +30,7 @@
       <div class="nav-links">
         <a class="nav-index" href="#project-index" aria-current="page"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx=".8"/><rect x="12" y="3" width="5" height="5" rx=".8"/><rect x="3" y="12" width="5" height="5" rx=".8"/><rect x="12" y="12" width="5" height="5" rx=".8"/></svg>作品集</a>
         <a href="./projects/yunding-tianguan.html"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m2 15 5-8 4 5 2-3 5 6H2Z"/><circle cx="13.5" cy="5" r="1.5"/></svg>场景</a>
-        <a href="./projects/lighting-compositing.html"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m8 7 5 3-5 3Z"/></svg>影像</a>
+        <details class="film-menu"><summary aria-label="选择影像作品"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"/><path d="m8 7 5 3-5 3Z"/></svg><span>影像</span><svg class="film-menu-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></summary><div class="film-menu-panel"><a href="./projects/lighting-compositing.html"><span>2025年作品集</span><small>2025 · 02:56</small></a><a href="./projects/kuang-wang.html"><span>狂王</span><small>2026 · 03:16</small></a></div></details>
       </div>
       <button class="contact-trigger" type="button" data-contact-open aria-label="打开联系方式" aria-haspopup="dialog" aria-controls="contact-dialog">
         <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5.5h14v9H3zM3.5 6l6.5 5 6.5-5"/></svg>
@@ -114,7 +116,7 @@
           <div class="collection-summary"><span class="collection-count">03</span><span class="collection-unit">个项目</span></div>
         </div>
         <div class="project-index-grid">
-          <a class="project-entry" href="./projects/yunding-tianguan.html" aria-label="查看作品：云顶天宫，东方幻想场景气氛，14 幅" data-reveal>
+          <a class="project-entry" id="project-cloud-palace" href="./projects/yunding-tianguan.html" aria-label="查看作品：云顶天宫，东方幻想场景气氛，14 幅" data-reveal>
             <span class="project-entry-cover"><img src="./assets/images/13-cloudlight-bridge.webp" width="1700" height="896" alt="云海光桥连接起层叠的天宫殿宇。" loading="lazy" decoding="async"></span>
             <span class="project-entry-copy">
               <span class="project-entry-type">01 / 场景气氛 · 14 幅</span>
@@ -123,7 +125,7 @@
               <span class="project-entry-arrow" aria-hidden="true">↗</span>
             </span>
           </a>
-          <a class="project-entry" href="./projects/lighting-compositing.html" aria-label="查看作品：2025年作品集，灯光与合成，02:56" data-reveal>
+          <a class="project-entry" id="project-2025" href="./projects/lighting-compositing.html" aria-label="查看作品：2025年作品集，灯光与合成，02:56" data-reveal>
             <span class="project-entry-cover"><img src="./assets/videos/yunjing-lighting-compositing-2025-poster.webp?v=cover-eye31-hq-20261022" width="2408" height="1080" alt="2025年作品集：蓝紫色光影中的眼部特写。" loading="lazy" decoding="async"></span>
             <span class="project-entry-copy">
               <span class="project-entry-type">02 / 动态影像 · 2025</span>
@@ -132,7 +134,7 @@
               <span class="project-entry-arrow" aria-hidden="true">↗</span>
             </span>
           </a>
-          <a class="project-entry" href="./projects/kuang-wang.html" aria-label="查看作品：狂王，2026 灯光与合成，03:16" data-reveal>
+          <a class="project-entry" id="project-kuangwang" href="./projects/kuang-wang.html" aria-label="查看作品：狂王，2026 灯光与合成，03:16" data-reveal>
             <span class="project-entry-cover"><img src="./assets/videos/yunjing-kuangwang-2026-poster.webp?v=cover-tiger-hq-20261022" width="2400" height="1008" alt="狂王双刃剪影与赤红烈焰中的巨兽。" loading="lazy" decoding="async"></span>
             <span class="project-entry-copy">
               <span class="project-entry-type">03 / 动态影像 · 2026</span>
