@@ -232,11 +232,6 @@
       if (box.top < 88 || box.bottom > innerHeight) video.scrollIntoView({block: 'center', behavior: reduced.matches ? 'instant' : 'smooth'});
     }));
     frames.forEach(button => { button.disabled = false; });
-    $('[data-video-share]')?.addEventListener('click', () => {
-      const url = new URL(location.href); url.searchParams.set('t', String(Math.floor(video.currentTime || 0)));
-      history.replaceState(history.state, '', url); copy(url.href, message);
-    });
-    if ($('[data-video-share]')) $('[data-video-share]').disabled = false;
     video.addEventListener('error', () => status(message, '视频暂未加载成功，请刷新后重试'));
     video.addEventListener('timeupdate', () => {
       const time = video.currentTime;
