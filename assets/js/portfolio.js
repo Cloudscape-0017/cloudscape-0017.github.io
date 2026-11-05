@@ -12,18 +12,7 @@
   }
   async function copy(text, node) {
     try {
-      if (navigator.clipboard && isSecureContext) await navigator.clipboard.writeText(text);
-      else {
-        const field = document.createElement('textarea');
-        field.value = text;
-        field.className = 'clipboard-field';
-        field.setAttribute('readonly', '');
-        (document.querySelector('dialog[open]') || document.body).append(field);
-        field.select();
-        const ok = document.execCommand('copy');
-        field.remove();
-        if (!ok) throw new Error('Copy unavailable');
-      }
+      await window.cloudscapeCopyText(text);
       status(node, '链接已复制');
     } catch { status(node, '复制失败，请复制地址栏中的链接'); }
   }
@@ -69,7 +58,9 @@
   if (cards.length && viewer) {
     const works = cards.map(card => {
       const image = $('img', card);
-      return {src: image.getAttribute('src'), alt: image.alt, width: Number(image.getAttribute('width')), height: Number(image.getAttribute('height')),
+      // Cards carry a small copy for the filmstrip; the viewer always opens the full image.
+      return {src: card.dataset.full || image.getAttribute('src'), thumb: card.dataset.thumb || image.getAttribute('src'),
+        srcset: image.getAttribute('srcset') || '', alt: image.alt, width: Number(image.getAttribute('width')), height: Number(image.getAttribute('height')),
         title: $('.work-meta strong', card).textContent.trim(), tag: $('.work-meta small', card).textContent.trim(),
         description: $('.work-description', card).textContent.trim()};
     });
@@ -150,12 +141,16 @@
       const thumb = document.createElement('button');
       thumb.type = 'button'; thumb.className = 'viewer-thumb';
       thumb.setAttribute('aria-label', `${pad(i + 1)} ${work.title}`);
-      const picture = document.createElement('img'); picture.src = work.src; picture.alt = ''; picture.loading = 'lazy';
-      picture.width = 100; picture.height = 66; thumb.append(picture);
+      const picture = document.createElement('img'); picture.src = work.thumb; picture.alt = ''; picture.loading = 'lazy';
+      picture.decoding = 'async'; picture.width = 100; picture.height = 66; thumb.append(picture);
       thumb.addEventListener('click', () => update(i)); strip.append(thumb);
       const tile = document.createElement('button'); tile.type = 'button'; tile.className = 'overview-tile';
       tile.setAttribute('aria-label', `查看场景 ${pad(i + 1)}：${work.title}`);
       const tileImage = picture.cloneNode(); tileImage.width = work.width; tileImage.height = work.height;
+      if (work.srcset) {
+        tileImage.srcset = work.srcset;
+        tileImage.sizes = '(max-width: 680px) 50vw, (max-width: 900px) 33vw, 25vw';
+      }
       const caption = document.createElement('span');
       const number = document.createElement('small'); number.textContent = pad(i + 1);
       const name = document.createElement('strong'); name.textContent = work.title;

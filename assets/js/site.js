@@ -77,27 +77,33 @@
     contactDialog.addEventListener("close", () => contactReturnTarget?.focus({ preventScroll: true }));
   }
 
-  if (contactCopies.length) {
-    async function copyText(text) {
-      if (navigator.clipboard && window.isSecureContext) {
-        try {
-          await navigator.clipboard.writeText(text);
-          return;
-        } catch {}
-      }
-
-      const field = document.createElement("textarea");
-      field.value = text;
-      field.setAttribute("readonly", "");
-      field.style.position = "fixed";
-      field.style.opacity = "0";
-      document.body.append(field);
-      field.select();
-      const copied = document.execCommand("copy");
-      field.remove();
-      if (!copied) throw new Error("Clipboard copy failed");
+  // Shared with portfolio.js for scene and timestamp links.
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch {}
     }
 
+    const field = document.createElement("textarea");
+    field.value = text;
+    field.setAttribute("readonly", "");
+    field.className = "clipboard-field";
+    (document.querySelector("dialog[open]") || document.body).append(field);
+    field.select();
+    const copied = document.execCommand("copy");
+    field.remove();
+    if (!copied) throw new Error("Clipboard copy failed");
+  }
+  window.cloudscapeCopyText = copyText;
+
+  // The address is assembled here so the page source holds no plain mailto link.
+  document.querySelectorAll("[data-email-user]").forEach((link) => {
+    link.href = `mailto:${link.dataset.emailUser}@${link.dataset.emailDomain}`;
+  });
+
+  if (contactCopies.length) {
     contactCopies.forEach((button) => {
       let feedbackTimer = 0;
       const label = button.dataset.copyLabel || "信息";

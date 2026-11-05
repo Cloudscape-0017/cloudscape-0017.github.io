@@ -168,3 +168,8 @@
   .site-header .brand { gap: 5px; }
 }
 .lightbox .lightbox-media { place-items: normal; text-align: left; }
+
+/* 404 keeps the project page frame and offers one way back. */
+.not-found { min-height: 72svh; display: grid; align-items: center; }
+.not-found h1 { margin: 22px 0 14px; font: 400 clamp(36px, 5vw, 60px)/1.3 var(--serif); }
+.not-found-copy { margin: 0; color: var(--paper-muted); font-size: 14px; }
