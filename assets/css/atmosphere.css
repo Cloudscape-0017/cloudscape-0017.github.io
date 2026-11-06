@@ -18,7 +18,7 @@ body { isolation: isolate; }
 .ambient-stage--page {
   position: fixed;
   z-index: -1;
-  background: linear-gradient(90deg, rgba(12, 23, 32, .88), rgba(12, 23, 32, .35)), url("../images/cloudscape-atmosphere.webp") 65% center / cover;
+  background: linear-gradient(90deg, rgba(12, 23, 32, .88), rgba(12, 23, 32, .35)), var(--atmosphere-image) 65% center / cover;
   opacity: .72;
 }
 .ambient-light {
@@ -112,7 +112,7 @@ body { isolation: isolate; }
 }
 .portfolio-footer::before {
   inset: -6%;
-  background: linear-gradient(90deg, rgba(9, 19, 28, .82), rgba(9, 19, 28, .3)), url("../images/cloudscape-atmosphere.webp") 64% 65% / cover;
+  background: linear-gradient(90deg, rgba(9, 19, 28, .82), rgba(9, 19, 28, .3)), var(--atmosphere-image) 64% 65% / cover;
   opacity: .9;
   animation: cloud-plate-drift 32s ease-in-out infinite alternate-reverse;
 }
