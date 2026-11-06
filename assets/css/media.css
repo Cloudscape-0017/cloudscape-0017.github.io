@@ -2,3 +2,13 @@
 :root {
   --atmosphere-image: url("../img/home/atmosphere.webp?v=98f50351ed");
 }
+[data-reel="lighting-compositing-01"] { --pos: 0.0%; }
+[data-reel="lighting-compositing-02"] { --pos: 17.61%; }
+[data-reel="lighting-compositing-03"] { --pos: 31.82%; }
+[data-reel="lighting-compositing-04"] { --pos: 54.55%; }
+[data-reel="lighting-compositing-05"] { --pos: 79.55%; }
+[data-reel="kuang-wang-01"] { --pos: 4.08%; }
+[data-reel="kuang-wang-02"] { --pos: 24.49%; }
+[data-reel="kuang-wang-03"] { --pos: 48.98%; }
+[data-reel="kuang-wang-04"] { --pos: 76.53%; }
+[data-reel="kuang-wang-05"] { --pos: 93.49%; }

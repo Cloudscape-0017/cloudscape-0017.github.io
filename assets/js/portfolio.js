@@ -237,6 +237,10 @@
       const time = video.currentTime;
       frames.forEach((button, i) => button.classList.toggle('is-active', time >= Number(button.dataset.seek) && (i === frames.length - 1 || time < Number(frames[i + 1].dataset.seek))));
     });
+    // The "playing" badge on the current shot follows the real playback state.
+    const reelList = $('.reel-selection');
+    const syncPlaying = () => reelList?.classList.toggle('is-playing', !video.paused && !video.ended);
+    ['play', 'pause', 'ended'].forEach(type => video.addEventListener(type, syncPlaying));
     document.querySelectorAll('.project-neighbor').forEach(link => link.addEventListener('click', () => video.pause()));
   }
   document.documentElement.dataset.portfolioReady = 'true';

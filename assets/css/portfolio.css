@@ -69,21 +69,45 @@
 .viewer-thumb[aria-current="true"] { opacity: 1; border-color: var(--gold-light); }
 .viewer-thumb:hover { opacity: 1; }
 .clipboard-field { position: fixed; left: 0; bottom: 0; width: 1px; height: 1px; opacity: 0; }
-.reel-selection { margin: 34px 0 0; }
-.reel-selection-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
-.reel-selection h2 { margin: 0; font: 400 24px var(--serif); }
-.reel-frames { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
-.reel-frame { min-width: 0; padding: 0; border: 0; color: var(--paper); background: none; text-align: left; cursor: pointer; }
-.reel-frame-image { position: relative; display: block; aspect-ratio: 20 / 9; overflow: hidden; border: 1px solid var(--line); }
-.reel-frame img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform 220ms ease, filter 220ms ease; }
-.reel-frame svg { position: absolute; left: 10px; bottom: 10px; width: 23px; height: 23px; fill: #f4e8ce; filter: drop-shadow(0 1px 4px #000); }
-.reel-frame > span:last-child { display: flex; align-items: baseline; justify-content: space-between; padding-top: 10px; gap: 5px; }
-.reel-frame strong { font-size: 13px; font-weight: 400; }
-.reel-frame time { color: #c0c9cf; font-size: 12px; }
-.reel-frame:hover img { transform: scale(1.035); filter: brightness(1.08); }
-.reel-frame.is-active .reel-frame-image { border-color: var(--gold-light); }
-.reel-frame.is-active strong { color: var(--gold-light); }
+/* Featured shots: a numbered shot list. Each cover shows where the shot sits in the film. */
+.reel-selection { margin: clamp(30px, 4vw, 48px) 0 0; }
+.reel-selection-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.reel-selection h2 { margin: 0; font: 400 26px/1.3 var(--serif); letter-spacing: .06em; }
+.reel-selection-meta { margin: 0; color: var(--paper-muted); font-size: 12px; letter-spacing: .06em; white-space: nowrap; }
+.reel-count { margin-right: 3px; color: var(--gold-light); font: italic 20px/1 Georgia, "Times New Roman", serif; }
+.reel-frames { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.4vw, 20px); margin: 0; padding: 0; list-style: none; }
+.reel-frames > li { min-width: 0; }
+.reel-frame { display: block; width: 100%; padding: 0; border: 0; color: var(--paper); background: none; text-align: left; cursor: pointer; }
+.reel-frame-image { position: relative; display: block; aspect-ratio: 20 / 9; overflow: hidden; border-radius: 2px; background: #05090d; box-shadow: 0 0 0 1px var(--line); transition: box-shadow 240ms ease; }
+.reel-frame-image::after { position: absolute; inset: 0; content: ""; pointer-events: none; background: linear-gradient(180deg, rgba(5, 9, 13, .5) 0%, rgba(5, 9, 13, 0) 34%, rgba(5, 9, 13, 0) 62%, rgba(5, 9, 13, .55) 100%); }
+.reel-frame img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.88) brightness(.9); transition: transform 600ms cubic-bezier(.2, .7, .2, 1), filter 300ms ease; }
+.reel-index { position: absolute; z-index: 1; top: 7px; left: 10px; color: var(--gold-light); font: italic 21px/1 Georgia, "Times New Roman", serif; text-shadow: 0 1px 8px rgba(0, 0, 0, .7); }
+.reel-play { position: absolute; z-index: 1; right: 9px; bottom: 9px; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid rgba(238, 231, 216, .7); border-radius: 50%; background: rgba(8, 14, 20, .4); transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease; }
+.reel-play svg { width: 12px; height: 12px; margin-left: 2px; fill: #f4e8ce; transition: fill 200ms ease; }
+.reel-now { position: absolute; z-index: 1; left: 9px; bottom: 9px; display: none; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; background: var(--gold-light); color: var(--night); font-size: 11px; line-height: 1.5; letter-spacing: .08em; }
+.reel-now::before { width: 6px; height: 6px; border-radius: 50%; background: currentColor; content: ""; animation: reel-pulse 1.4s ease-in-out infinite; }
+@keyframes reel-pulse { 50% { opacity: .25; } }
+.reel-meta { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 11px 1px 0; color: var(--paper-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.reel-meta time { color: var(--paper); font-size: 13px; letter-spacing: .04em; transition: color 200ms ease; }
+.reel-track { position: relative; height: 1px; background: rgba(234, 216, 173, .22); }
+.reel-mark { position: absolute; top: 50%; left: var(--pos, 0%); width: 7px; height: 7px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px rgba(216, 189, 131, .16); transform: translate(-50%, -50%); }
+.reel-total { color: var(--paper-dim); font-size: 11px; }
+.reel-frame:hover img, .reel-frame:focus-visible img { transform: scale(1.04); filter: saturate(1.04) brightness(1.04); }
+.reel-frame:hover .reel-play, .reel-frame:focus-visible .reel-play { transform: scale(1.08); border-color: var(--gold-light); background: var(--gold-light); }
+.reel-frame:hover .reel-play svg, .reel-frame:focus-visible .reel-play svg { fill: var(--night); }
+.reel-frame:hover .reel-meta time { color: var(--gold-light); }
+.reel-frame.is-active .reel-frame-image { box-shadow: 0 0 0 1px var(--gold-light), 0 12px 32px rgba(0, 0, 0, .38); }
+.reel-frame.is-active img { filter: none; }
+.reel-frame.is-active .reel-meta time { color: var(--gold-light); }
+/* "Playing" replaces the play button only while the film is actually running. */
+.reel-selection.is-playing .reel-frame.is-active .reel-play { display: none; }
+.reel-selection.is-playing .reel-frame.is-active .reel-now { display: inline-flex; }
 .reel-status { min-height: 22px; margin: 12px 0 0; color: #e6cc93; font-size: 13px; }
+/* Below desktop width the five shots become a swipeable strip; the next card peeks in. */
+@media (max-width: 1100px) {
+  .reel-frames { display: flex; overflow-x: auto; padding: 2px 2px 14px; scroll-snap-type: x mandatory; scroll-padding-inline: 2px; scrollbar-width: thin; scrollbar-color: rgba(234, 216, 173, .35) transparent; }
+  .reel-frames > li { flex: 0 0 31%; scroll-snap-align: start; }
+}
 .film-menu summary:focus-visible, .gallery-modebar button:focus-visible, .overview-tile:focus-visible, .viewer-tools button:focus-visible, .viewer-thumb:focus-visible, .reel-frame:focus-visible, .project-neighbor:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
 @media (max-width: 900px) {
   .project-neighbor { grid-template-columns: 88px minmax(0, 1fr) 20px; gap: 14px; }
@@ -92,7 +116,6 @@
   .gallery-overview { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .lightbox .lightbox-body { grid-template-columns: minmax(0, 1fr) 200px; gap: 20px; }
   .lightbox .lightbox-details h2 { font-size: 28px; }
-  .reel-frames { gap: 12px; }
 }
 @media (max-width: 680px) {
   .film-menu summary { gap: 4px; padding: 8px; min-height: 36px; font-size: 12px; }
@@ -123,8 +146,9 @@
   .viewer-filmstrip { padding-top: 10px; }
   .reel-selection { margin-top: 25px; }
   .reel-selection h2 { font-size: 22px; }
-  .reel-frames { display: flex; overflow-x: auto; gap: 12px; padding: 2px 2px 12px; scroll-snap-type: x proximity; scrollbar-width: thin; }
-  .reel-frame { flex: 0 0 46%; scroll-snap-align: start; }
+  .reel-hint { display: none; }
+  .reel-frames { gap: 12px; }
+  .reel-frames > li { flex-basis: 72%; }
   /* The status line only takes room while it has something to say. */
   .reel-status:empty { min-height: 0; margin: 0; }
   .motion-project-page .motion-page { padding-bottom: 28px; }
@@ -138,7 +162,8 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .film-menu-panel { animation: none; }
-  .film-menu-chevron, .project-neighbor svg, .overview-tile img, .reel-frame img { transition: none !important; }
+  .film-menu-chevron, .project-neighbor svg, .overview-tile img, .reel-frame img, .reel-play { transition: none !important; }
+  .reel-now::before { animation: none; }
 }
 /* Keep compact headers on narrow phones and let the viewer use its allocated row. */
 @media (max-width: 680px) {
