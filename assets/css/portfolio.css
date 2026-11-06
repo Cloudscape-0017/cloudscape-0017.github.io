@@ -1,4 +1,14 @@
 /* Cloudscape: browsing controls continue the existing ink, ivory and gold system. */
+.scene-project-page .work-image { aspect-ratio: 16 / 9; }
+.scene-project-page .work-card--panorama { grid-column: 1 / -1; }
+.scene-project-page .work-card--panorama .work-image { aspect-ratio: 20 / 9; }
+.scene-project-page .work-card--panorama img { object-position: center 45%; }
+@media (max-width: 640px) {
+  .scene-project-page .works-grid { grid-template-columns: minmax(0, 1fr); row-gap: 30px; }
+  .scene-project-page .work-card--panorama .work-image { aspect-ratio: 16 / 9; }
+  .scene-project-page .work-image img { object-fit: contain; }
+  .scene-project-page .work-image { background: #0b141b; }
+}
 [hidden] { display: none !important; }
 .film-menu { position: relative; flex: 0 0 auto; }
 .film-menu summary { display: flex; align-items: center; justify-content: center; gap: 7px; min-height: 40px; padding: 8px 13px; color: var(--paper); font: inherit; font-size: 13px; list-style: none; cursor: pointer; border-radius: 6px; }
