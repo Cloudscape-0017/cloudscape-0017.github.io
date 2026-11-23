@@ -31,6 +31,49 @@
   });
 
   const homeCards = $$('.project-entry');
+  // Only a deliberate desktop hover may fetch a short, silent preview.
+  const previewPointer = matchMedia('(min-width: 761px) and (hover: hover) and (pointer: fine)');
+  if (homeCards.length) {
+    let activePreview = null, hoverDelay = 0;
+    const stopPreview = () => {
+      clearTimeout(hoverDelay);
+      if (!activePreview) return;
+      const {card, clip} = activePreview;
+      activePreview = null;
+      card.classList.remove('is-previewing');
+      clip.pause();
+    };
+    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.target === activePreview?.card && !entry.isIntersecting)) stopPreview();
+    }) : null;
+    homeCards.forEach(card => {
+      const clip = $('.project-preview', card);
+      if (!clip) return;
+      observer?.observe(card);
+      card.addEventListener('pointerenter', event => {
+        if (!previewPointer.matches || reduced.matches || document.hidden || event.pointerType === 'touch') return;
+        stopPreview();
+        activePreview = {card, clip};
+        hoverDelay = setTimeout(() => {
+          if (activePreview?.clip !== clip) return;
+          if (!clip.hasAttribute('src')) clip.src = clip.dataset.previewSrc;
+          else if (clip.readyState >= 1) clip.currentTime = 0;
+          clip.play().catch(() => { if (activePreview?.clip === clip) stopPreview(); });
+        }, 180);
+      });
+      card.addEventListener('pointerleave', () => { if (activePreview?.clip === clip) stopPreview(); });
+      card.addEventListener('pointerdown', () => { if (activePreview?.clip === clip) stopPreview(); });
+      clip.addEventListener('playing', () => {
+        if (activePreview?.clip === clip) card.classList.add('is-previewing');
+        else clip.pause();
+      });
+      clip.addEventListener('error', () => { if (activePreview?.clip === clip) stopPreview(); });
+    });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stopPreview(); });
+    addEventListener('pagehide', stopPreview);
+    previewPointer.addEventListener('change', stopPreview);
+    reduced.addEventListener('change', stopPreview);
+  }
   homeCards.forEach(card => card.addEventListener('click', event => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button) return;
     try { sessionStorage.setItem('cloudscape-return', JSON.stringify({id: card.id, y: scrollY, at: Date.now()})); } catch {}
@@ -206,7 +249,7 @@
     modes.forEach(button => { button.disabled = false; });
   }
 
-  const video = $('video');
+  const video = $('.motion-frame video');
   if (video) {
     const frames = $$('[data-seek]');
     const message = $('.reel-status');

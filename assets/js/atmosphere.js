@@ -34,7 +34,7 @@
   else document.body.prepend(stage);
 
   // Decoration rests while the tab is hidden or an actual work is playing.
-  const videos = Array.from(document.querySelectorAll("video"));
+  const videos = Array.from(document.querySelectorAll(".motion-frame video"));
   const syncActivity = () => {
     const resting = document.hidden || reducedMotion.matches || videos.some((video) => !video.paused && !video.ended);
     document.documentElement.toggleAttribute("data-ambient-paused", resting);
