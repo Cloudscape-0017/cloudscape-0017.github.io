@@ -19,9 +19,13 @@
 
   // Native details keeps this menu usable without JavaScript.
   $$('.film-menu').forEach(menu => {
+    const summary = $('summary', menu);
+    const syncExpanded = () => summary?.setAttribute('aria-expanded', String(menu.open));
+    syncExpanded();
+    menu.addEventListener('toggle', syncExpanded);
     menu.addEventListener('keydown', event => {
       if (event.key === 'Escape' && menu.open) {
-        event.preventDefault(); menu.open = false; $('summary', menu).focus();
+        event.preventDefault(); menu.open = false; summary?.focus();
       }
     });
     document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });

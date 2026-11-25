@@ -3,6 +3,13 @@
   const collectionCount = document.querySelector(".collection-count");
   if (collectionCount) collectionCount.textContent = String(document.querySelectorAll(".project-entry").length).padStart(2, "0");
   const railLinks = Array.from(document.querySelectorAll("[data-rail-section]"));
+  const railTop = document.querySelector(".rail-top");
+  const siteFooter = document.querySelector("#site-footer");
+  if (railTop && siteFooter && "IntersectionObserver" in window) {
+    new IntersectionObserver((entries) => {
+      railTop.classList.toggle("is-hidden", entries.some((entry) => entry.isIntersecting));
+    }, { threshold: 0.12 }).observe(siteFooter);
+  }
   const readingValue = document.querySelector(".reading-value");
   const indexSection = document.querySelector("#project-index");
   const header = document.querySelector(".site-header");
@@ -155,8 +162,12 @@
       if (hero && heroImage && heroCopy) {
         // The title opens first, then the copy and action settle into the shot.
         const entrance = window.gsap.timeline({defaults: {ease: "power3.out"}});
+        const heroEyebrow = heroCopy.querySelector(".hero-eyebrow");
+        if (heroEyebrow) {
+          entrance.fromTo(heroEyebrow, {autoAlpha: 0, y: 10}, {autoAlpha: 1, y: 0, duration: .4}, 0);
+        }
         entrance.fromTo(heroCopy.querySelector("h1"), {autoAlpha: 0, y: 22, clipPath: "inset(0 0 100% 0)"},
-          {autoAlpha: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: .56, clearProps: "clipPath"}, 0);
+          {autoAlpha: 1, y: 0, clipPath: "inset(0 0 0% 0)", duration: .56, clearProps: "clipPath"}, .04);
         entrance.fromTo(heroCopy.querySelectorAll(".hero-intro, .primary-link"), {autoAlpha: 0, y: 12},
           {autoAlpha: 1, y: 0, duration: .36, stagger: .07}, .17);
         entrance.fromTo(".hero-viewfinder", {scale: 1.035}, {scale: 1, duration: .55}, 0);
